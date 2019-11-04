@@ -1,0 +1,45 @@
+NET "iIORQ"      LOC = "p11" ;
+NET "iWR"        LOC = "p12" ;
+NET "iRD"        LOC = "p13" ; 
+
+NET "iATMEGA_READY" LOC = "p22"; 
+
+NET "iADR<0>"   LOC = "p35" ; 
+NET "iADR<4>"   LOC = "p36" ; 
+NET "iADR<5>"   LOC = "p37" ; 
+NET "iADR<6>"   LOC = "p38" ; 
+NET "iADR<8>"   LOC = "p39" ; 
+NET "iADR<10>"  LOC = "p40" ; 
+
+NET "oSPEECH_WRITE" LOC = "p18" ; 
+NET "oSID_RW"       LOC = "p19" ; 
+NET "oSID_CS"       LOC = "p20" ; 
+
+NET "ioCPC_DATA<0>"   LOC = "p1" ; 
+NET "ioCPC_DATA<1>"   LOC = "p2" ;
+NET "ioCPC_DATA<2>"   LOC = "p3" ;
+NET "ioCPC_DATA<3>"   LOC = "p4" ;
+NET "ioCPC_DATA<4>"   LOC = "p6" ;
+NET "ioCPC_DATA<5>"   LOC = "p7" ;
+NET "ioCPC_DATA<6>"   LOC = "p8" ;
+NET "ioCPC_DATA<7>"   LOC = "p9" ; 
+
+
+NET "ioATMEGA_DATA<0>"   LOC = "p24" ; 
+NET "ioATMEGA_DATA<1>"   LOC = "p25" ;
+NET "ioATMEGA_DATA<2>"   LOC = "p26" ;
+NET "ioATMEGA_DATA<3>"   LOC = "p27" ;
+NET "ioATMEGA_DATA<4>"   LOC = "p28" ;
+NET "ioATMEGA_DATA<5>"   LOC = "p29" ;
+NET "ioATMEGA_DATA<6>"   LOC = "p33" ;
+NET "ioATMEGA_DATA<7>"   LOC = "p34" ; 
+
+NET "iCPC_CLOCK"     LOC = "p5" ; 
+
+NET "oSID_CLOCK"     LOC = "p14" ; 
+
+NET "iSID_ON"        LOC = "p42" ;
+NET "iCPLD_STORE"    LOC = "p43" ; 
+
+NET "oSPEECH_READ"   LOC = "p44" ; 
+

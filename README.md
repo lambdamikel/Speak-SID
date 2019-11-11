@@ -26,8 +26,9 @@ GPL 3
 This project was developed using
 [WinAVR.](http://winavr.sourceforge.net/) In addition, the [AVR
 Programming Libraries](https://github.com/hexagon5un/AVR-Programming)
-from Elliot Williams - "Make: AVR Programming" are being used. A copy
-of the library is also included in the src folder of this project.
+from Elliot Williams' book "Make: AVR Programming" are being used. A
+copy of the library is also included in the src folder of this
+project.
 
 ## Building 
 

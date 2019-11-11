@@ -1,0 +1,514 @@
+Archive member included because of file (symbol)
+
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+                              ../../AVR-Programming-Library/USART.o (__udivmodqi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+                              ../../AVR-Programming-Library/USART.o (__udivmodhi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+                              speaksid.o (__udivmodsi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                              c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o (exit)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+                              speaksid.o (__do_copy_data)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                              speaksid.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+buffer              0x80              speaksid.o
+allo_map            0x40              speaksid.o
+
+Discarded input sections
+
+ .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+ .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+ .text          0x00000000        0x0 speaksid.o
+ .data          0x00000000        0x0 speaksid.o
+ .bss           0x00000000        0x0 speaksid.o
+ .text.uart_off
+                0x00000000        0x0 speaksid.o
+ .text.stop_timer
+                0x00000000        0x0 speaksid.o
+ .text.start_timer
+                0x00000000        0x0 speaksid.o
+ .text.stop     0x00000000        0x0 speaksid.o
+ .text.speakjet_reset
+                0x00000000        0x0 speaksid.o
+ .text.change_voice
+                0x00000000        0x0 speaksid.o
+ .text          0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .data          0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .bss           0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.initUSART
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.transmitByte
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.receiveByte
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.printString
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.readString
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.printByte
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.printWord
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.printBinaryByte
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.nibbleToHexCharacter
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.printHexByte
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text.getNumber
+                0x00000000        0x0 ../../AVR-Programming-Library/USART.o
+ .text          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+ .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+ .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+ .text.libgcc   0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+ .text          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .text.libgcc   0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .text          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+ .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+ .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+ .text          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+LOAD speaksid.o
+LOAD ../../AVR-Programming-Library/USART.o
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4\libc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0xa6c
+ *(.vectors)
+ .vectors       0x00000000       0x2a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ .progmem.gcc_sw_table
+                0x0000002a       0x22 speaksid.o
+ *(.progmem*)
+                0x0000004c                . = ALIGN (0x2)
+                0x0000004c                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000004c        0x0 linker stubs
+ *(.trampolines*)
+                0x0000004c                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000004c                __ctors_start = .
+ *(.ctors)
+                0x0000004c                __ctors_end = .
+                0x0000004c                __dtors_start = .
+ *(.dtors)
+                0x0000004c                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000004c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+                0x0000004c                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000004c        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000058       0x16 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+                0x00000058                __do_copy_data
+ .init4         0x0000006e       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x0000006e                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x0000007e        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+ *(.init9)
+ *(.text)
+ .text          0x00000082        0x2 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8535.o
+                0x00000082                __vector_12
+                0x00000082                __bad_interrupt
+                0x00000082                __vector_6
+                0x00000082                __vector_3
+                0x00000082                __vector_13
+                0x00000082                __vector_17
+                0x00000082                __vector_7
+                0x00000082                __vector_5
+                0x00000082                __vector_4
+                0x00000082                __vector_9
+                0x00000082                __vector_2
+                0x00000082                __vector_15
+                0x00000082                __vector_8
+                0x00000082                __vector_14
+                0x00000082                __vector_10
+                0x00000082                __vector_16
+                0x00000082                __vector_20
+                0x00000084                . = ALIGN (0x2)
+ *(.text.*)
+ .text.init_allophones
+                0x00000084      0x16a speaksid.o
+                0x00000084                init_allophones
+ .text.uart_on0
+                0x000001ee      0x12e speaksid.o
+                0x000001ee                uart_on0
+ .text.__vector_11
+                0x0000031c       0x76 speaksid.o
+                0x0000031c                __vector_11
+ .text.uart_init
+                0x00000392       0x1a speaksid.o
+                0x00000392                uart_init
+ .text.uart_transmit
+                0x000003ac        0xc speaksid.o
+                0x000003ac                uart_transmit
+ .text.uart_print_string
+                0x000003b8       0x24 speaksid.o
+                0x000003b8                uart_print_string
+ .text.cont     0x000003dc       0x34 speaksid.o
+                0x000003dc                cont
+ .text.speak_buffer
+                0x00000410       0x4a speaksid.o
+                0x00000410                speak_buffer
+ .text.__vector_1
+                0x0000045a       0x28 speaksid.o
+                0x0000045a                __vector_1
+ .text.__vector_18
+                0x00000482       0x8c speaksid.o
+                0x00000482                __vector_18
+ .text.__vector_19
+                0x0000050e       0x82 speaksid.o
+                0x0000050e                __vector_19
+ .text.process_reset
+                0x00000590       0x20 speaksid.o
+                0x00000590                process_reset
+ .text.test_voice
+                0x000005b0        0x8 speaksid.o
+                0x000005b0                test_voice
+ .text.init_main
+                0x000005b8       0x78 speaksid.o
+                0x000005b8                init_main
+ .text.main     0x00000630      0x3f4 speaksid.o
+                0x00000630                main
+ .text.libgcc   0x00000a24       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+                0x00000a24                __udivmodsi4
+                0x00000a68                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00000a68        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                0x00000a68                exit
+                0x00000a68                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00000a68        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000a6c                _etext = .
+
+.data           0x00800060       0x2e load address 0x00000a6c
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ .data.message  0x00800060       0x22 speaksid.o
+                0x00800060                message
+ .data.init     0x00800082        0x8 speaksid.o
+                0x00800082                init
+ .data.speak_ready
+                0x0080008a        0x1 speaksid.o
+                0x0080008a                speak_ready
+ .data.SERIAL_BAUDRATE
+                0x0080008b        0x1 speaksid.o
+ .data.SERIAL_WIDTH
+                0x0080008c        0x1 speaksid.o
+ .data.SERIAL_STOP_BITS
+                0x0080008d        0x1 speaksid.o
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x0080008e                . = ALIGN (0x2)
+                0x0080008e                _edata = .
+                0x0080008e                PROVIDE (__data_end, .)
+
+.bss            0x0080008e       0xc9
+                0x0080008e                PROVIDE (__bss_start, .)
+ *(.bss)
+ *(.bss*)
+ .bss.emulated_buffer_size
+                0x0080008e        0x1 speaksid.o
+                0x0080008e                emulated_buffer_size
+ .bss.ms_count  0x0080008f        0x1 speaksid.o
+                0x0080008f                ms_count
+ .bss.length    0x00800090        0x1 speaksid.o
+                0x00800090                length
+ .bss.read_pos  0x00800091        0x1 speaksid.o
+                0x00800091                read_pos
+ .bss.write_pos
+                0x00800092        0x1 speaksid.o
+                0x00800092                write_pos
+ .bss.cur_mode  0x00800093        0x1 speaksid.o
+ .bss.last_mode
+                0x00800094        0x1 speaksid.o
+ .bss.disable_once
+                0x00800095        0x1 speaksid.o
+ .bss.SERIAL_PARITY
+                0x00800096        0x1 speaksid.o
+ *(COMMON)
+ COMMON         0x00800097       0xc0 speaksid.o
+                0x00800097                buffer
+                0x00800117                allo_map
+                0x00800157                PROVIDE (__bss_end, .)
+                0x00000a6c                __data_load_start = LOADADDR (.data)
+                0x00000a9a                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800157        0x0
+                0x00800157                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800157                PROVIDE (__noinit_end, .)
+                0x00800157                _end = .
+                0x00800157                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x130
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0xc0 speaksid.o
+ .debug_aranges
+                0x000000c0       0x70 ../../AVR-Programming-Library/USART.o
+
+.debug_pubnames
+                0x00000000      0x2a4
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x1dc speaksid.o
+ .debug_pubnames
+                0x000001dc       0xc8 ../../AVR-Programming-Library/USART.o
+
+.debug_info     0x00000000      0xe7b
+ *(.debug_info)
+ .debug_info    0x00000000      0xa33 speaksid.o
+ .debug_info    0x00000a33      0x448 ../../AVR-Programming-Library/USART.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x46c
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x2c9 speaksid.o
+ .debug_abbrev  0x000002c9      0x1a3 ../../AVR-Programming-Library/USART.o
+
+.debug_line     0x00000000     0x11a1
+ *(.debug_line)
+ .debug_line    0x00000000      0xd42 speaksid.o
+ .debug_line    0x00000d42      0x45f ../../AVR-Programming-Library/USART.o
+
+.debug_frame    0x00000000      0x220
+ *(.debug_frame)
+ .debug_frame   0x00000000      0x160 speaksid.o
+ .debug_frame   0x00000160       0xc0 ../../AVR-Programming-Library/USART.o
+
+.debug_str      0x00000000      0x44b
+ *(.debug_str)
+ .debug_str     0x00000000      0x30c speaksid.o
+                                0x35b (size before relaxing)
+ .debug_str     0x0000030c      0x13f ../../AVR-Programming-Library/USART.o
+                                0x1db (size before relaxing)
+
+.debug_loc      0x00000000      0xa08
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x833 speaksid.o
+ .debug_loc     0x00000833      0x1d5 ../../AVR-Programming-Library/USART.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(speaksid.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x300
+ .debug_ranges  0x00000000      0x1a8 speaksid.o
+ .debug_ranges  0x000001a8      0x158 ../../AVR-Programming-Library/USART.o

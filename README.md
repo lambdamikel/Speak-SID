@@ -44,7 +44,7 @@ Use `make`. The provided `Makefile` template is again from Elliot Williams' book
 
 ## Status LEDs 
 
-![PCB](images/leds.jpg)
+![LEDs](images/leds.jpg)
 
 - **POWER**: Obvious
 - **READY**: Lights up when Speak&SID is waiting for / expecting input from port `&FBEE`. 
@@ -55,6 +55,19 @@ Use `make`. The provided `Makefile` template is again from Elliot Williams' book
 - **OUT1, OUT2, OUT3, OUT4**: Status of Speak&SID's general purpose output (GPO) pins. 
 
 ## DIP Switches
+
+![DIP12](images/switches.jpg)
+
+- **1**: Assign SpeakJet output to left channel. Don't turn on if **2** is on!
+- **2**: Assign SID output to left channel. Don't turn on if **1** is on! 
+- **3**: Route left channel to CPC internal speaker. 
+- **4**: Assign SpeakJet output to right channel. Don't turn on if **5** is on! 
+- **5**: Assign SID output to right channel. Don't turn on if **4** is on! 
+- **6**: Route right channel to CPC internal speaker. 
+- **7**: Assign ATMega TX UART output to SpeakJet RX input. Required for SpeakJet operation. Don't turn on if **8** is on! 
+- **8**: Assign GND to Speakjet RX input. Required if Serial / UART Mode is being used. Don't turn on if **7** is on!
+- **9**: Enable 4.7 kOhm SDA VCC pull-up resistor. Used for I2C. Optional. 
+- **10**: Enable 4.7 kOhm SCL VCC pull-up resistor. Used for I2C. Optional.   
 
 ## Firmware Update / Flash 
 

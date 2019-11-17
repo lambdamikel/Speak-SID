@@ -46,26 +46,13 @@ Use `make`. The provided `Makefile` template is again from Elliot Williams' book
 
 ![PCB](images/leds.jpg)
 
-POWER 
-Obvious
-
-READY 
-: Lights up when Speak&SID is waiting for / expecting input from port `&FBEE`. 
-
-SPJRDY
-: Lights up when SpeakJet is ready. See [SpeakJet manual](manuals/speakjet-usermanual.pdf) for details. 
-
-SPJSPK 
-: Lights up when SpeakJet is speaking. See [SpeakJet manual](manuals/speakjet-usermanual.pdf) for details. 
-
-SPBUF 
-: Lights up when SpeakJet's input buffer is half full. See [SpeakJet manual](manuals/speakjet-usermanual.pdf) for details. 
-
-SIDON
-: Lights up then Speak&SID is in SID mode.
-
-OUT1, OUT2, OUT3, OUT4 
-: Status of Speak&SID's general purpose output (GPO) pins. 
+- POWER: Obvious
+- READY: Lights up when Speak&SID is waiting for / expecting input from port `&FBEE`. 
+- SPJRDY: Lights up when SpeakJet is ready. See [SpeakJet manual](manuals/speakjet-usermanual.pdf) for details. 
+- SPJSPK: Lights up when SpeakJet is speaking. See [SpeakJet manual](manuals/speakjet-usermanual.pdf) for details. 
+- SPBUF: Lights up when SpeakJet's input buffer is half full. See [SpeakJet manual](manuals/speakjet-usermanual.pdf) for details. 
+- SIDON: Lights up then Speak&SID is in SID mode. 
+- OUT1, OUT2, OUT3, OUT4: Status of Speak&SID's general purpose output (GPO) pins. 
 
 ## DIP Switches
 

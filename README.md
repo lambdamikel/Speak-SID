@@ -77,14 +77,6 @@ To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `ma
 
 template is again from Elliot Williams' book. See above. 
 
-## Acknowledgements
-
-- Elliot Wiliams for his book "Make: AVR Programming" and [corresponding sources /AVR Programming Libraries.](https://github.com/hexagon5un/AVR-Programming) 
-
-- [DaDMaN from the CPC Wiki Forum](http://www.cpcwiki.eu/forum/amstrad-cpc-hardware/new-amstrad-cpc-sound-board-(aka-sonique-sound-board)-sid-part-(wip)/) for providing the Z80 source code of his branch of Simon Owen's Z80 SID Player.
-
-- [Simon Owen](https://simonowen.com/sam/sidplay/) for the [Z80 SID Player.](https://github.com/simonowen/sidplay)
-
 ## Status LEDs 
 
 ![LEDs](images/leds.jpg)
@@ -121,6 +113,31 @@ I am using the USBtinyISP programmer. Just connect the progammer's SPI pins with
 ## Firmware Documentation 
 
 The best documentation is the [ATMega source code itself.](src/atmega8535/speaksid/speaksid.c) 
-More soon. 
 
+Speak&SID main IO port is `&FBEE`. This is the port that is / was being used by the Amstrad SSA-1 speech synthesizer. 
 
+In the following, a `control byte` or `command` is a sequence of at least 2 bytes starting with `255`. For example, to reset Speak&SID, send control byte `0`, i.e., send the sequence `255, 0`. The different modes of Speak&SID are entered by sending various control bytes. Note that, in order to send 255 as `payload` data, it needs to be escaped, otherwise it would be interpreted as starting a control byte. Hence, send `255, 255` to send `255` as payload data. 
+
+In the following, the control bytes for setting the corresponding Speak&SID modes are listed: 
+
+- **Native SpeakJet Mode**: 2 (hence, send `255, 1` to enter this mode). If this mode is active,  every byte being sent to `&FBEE` will be handed over to the SpeakJet chip directly. Again, note that in order to send byte 255, you will need to send 255 twice.  In this mode, the current status of the SpeakJet chip will be visible on the corresponding Segment Bar LEDs (SJRDY, SJSPK, SJBUF), and the signals will also be available to read from port `FBDE`. The lower three bits on `FBDE` correspond to SpeakJet Ready (D0 = SJRDY LED), Speakjet Speaking (D1 = SJSPK LED), and SpeakJet Buffer Half Full (D3 = SJBUF LED). 
+
+The current SpeakJet voice can be changed / altered in a number of ways, including pitch, speed, volume, etc. Use the following control bytes: change volume (`20`), speed of speech (`21`), pitch (`22`), and "bend" (`23`). Once changed, the voice can always be tested using control byte / command `10` (test voice). Notice that the same voice is used for the SSA-1 mode (see next). 
+
+- **Amstrad SSA-1 Emulation Mode**: 3. In this mode the Amstrad SSA-1 speech synthesizer is emulated. On port `&FBEE`, emulated SBY and LRQ SP0256-AL2 signals are visible, such that existing CPC software will think that an Amstrad SSA-1 is present. The emulation has been tested with SSA-1 supporting speech games such as "Roland in Space", the SSA-1 driver software, "Tubaruba", and others. 
+
+- **SID Mode**: 4. In this mode, the SID soundchip is turned on. The 28 SID registers of the SID soundchip are mapped to the CPC's IO range `&FAC0 - &FADC`. In addition, in this mode, Speak&SID is listening to `&FBEE` - any output to `&FBEE` will be output to the GPIO ports, hence setting the coresponding LED pattern on the LED Segment Bar. This can be used for programming lightshows, or volume level meters, etc. In order to **quite the SID mode**, send 255 to `&FBEE`. Notive that the GPIO is 4bit only, so only values 0-15 make a difference wrt. LED patterns (only the lower nibble of the byte). Notice that all IO requests in the `&FAC0 - &FADC` range directly go to the SID chip as long as the SID mode is enabled, hence resulting in maximal SID access speed (no ATMega involvement for SID access). 
+
+-- **UART / Serial Mode**: 5. Enables the UART. One the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits. In parallel, the incoming RX messages are buffered (using interrupts), and the so-far received content can be requested and retrieved at any time, using a number of commands to query the buffer for the number of available bytes, and to request the next byte from the input buffer, etc. A number of control byte / commands determines the UART TX settings -- baud rate `50, <baud_rate>` (see table below); width `51, <width>` (5,6,7, or 8; normally, <width> = 8); parity `52, <parity>` (0, 1, 2 - no parity, off parity, even parity); `52, <number stop bits>` for the number of stop bits (1, 2). 
+
+## CPC Disk - Software 
+
+Soon. 
+
+## Acknowledgements
+
+- Elliot Wiliams for his book "Make: AVR Programming" and [corresponding sources /AVR Programming Libraries.](https://github.com/hexagon5un/AVR-Programming) 
+
+- [DaDMaN from the CPC Wiki Forum](http://www.cpcwiki.eu/forum/amstrad-cpc-hardware/new-amstrad-cpc-sound-board-(aka-sonique-sound-board)-sid-part-(wip)/) for providing the Z80 source code of his branch of Simon Owen's Z80 SID Player.
+
+- [Simon Owen](https://simonowen.com/sam/sidplay/) for the [Z80 SID Player.](https://github.com/simonowen/sidplay)

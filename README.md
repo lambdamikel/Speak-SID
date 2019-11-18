@@ -31,23 +31,33 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 GPL 3 
 
-## Hardware 
+## Speak&SID Hardware Overview 
 
-The main components are: 
+The **main components** are: 
 
 - Microcontroller: ATMega 8535 @ 20 MHz 
 - CPLD: Xilinx 9536
 - Speech chip: SpeakJet
 - Sound chip: SID 6581 or 8580, SwinSID, or ARMSID, or.... 
 
-The source code for the CPLD and the ATMega are provided, as well as HEX / JED files. 
+The source code for the CPLD and the ATMega are provided here (and HEX / JED firmware files as well). 
 
 CPC Speak&SID has **two reset buttons**: one for resetting the Speak&SID, and one for resetting the CPC. 
 
-CPC Speak&SID has two trimmer / potentiometers; the left potentiometer
+CPC Speak&SID has **two trimmer / potentiometers**; the left potentiometer
 controls the volume / signal level of the SpeakJet chip, the other one
 controls the SID volume level. The signal stereo routing is determined
 by the 10 DIP switches, see below.
+
+The sound comes out of the **audio stereo jack**. The left/right channel can be assigned individually (SpeakJet / SID). 
+Also, a switch determines whether the determined left or right channel audio is fed back into the CPC to be heard
+in the internal CPC speaker. 
+
+The optional **power barrel jack** need center polarity, and either 12 V (SID 6581) or 9 V (SID 8580). 
+
+The **LED Segment Bar** visualizes the status / state of Speak&SID, see below. 
+
+Note that both the SpeakJet as well as the SID are mono audio output devices, but the can be assigned to the left and/or right channel of the stereo output signal using the **DIP Switches**. Do not assign both SID and SpeakJet output to one single (left or right) audio channel; use different channels. In case you would like to hear the SID (or SpeakJet) on both channels (left and right), make sure to deselect the SpeakJet (SID, respectively) first, using the DIP switches. See below. 
 
 ## Requirements 
 
@@ -58,9 +68,14 @@ from Elliot Williams' book "Make: AVR Programming" are being used. A
 copy of the library is also included in the [src folder of this
 project.](src/atmega8535/)
 
-## Building 
+## Building and Maker Support 
 
-Use `make`. The provided `Makefile` template is again from Elliot Williams' book. See above. 
+I am able to provide Speak&SID as a kit, or only pre-programmed components (CPLD, ATMega), or even a fully assembled version inlcuding
+a connection cable and/or LambdaBoard expansion board backplane. Send me a mail if you are interrested. Or, just download the sources and build it from the [provided Gerbers](gerbers/speak&sid.zip) and [BOM](schematics/bom.jpg). 
+
+To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `make` and the [provided `Makefile`.](src/atmega8535/speaksid/Makefile). 
+
+template is again from Elliot Williams' book. See above. 
 
 ## Acknowledgements
 

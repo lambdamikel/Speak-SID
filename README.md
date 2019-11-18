@@ -35,7 +35,7 @@ GPL 3
 
 The **main components** are: 
 
-- Microcontroller: ATMega 8535 @ 20 MHz 
+- Microcontroller: ATMega 8535 @ 16 MHz 
 - CPLD: Xilinx 9536
 - Speech chip: SpeakJet
 - Sound chip: SID 6581 or 8580, SwinSID, or ARMSID, or.... 

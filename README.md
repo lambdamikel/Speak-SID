@@ -138,9 +138,9 @@ The current SpeakJet voice can be changed / altered in a number of ways, includi
 
 - **Echo Test Mode**: 9.
 
-- **Speak&SID Reset**: 0. 
+The following commands / control bytes do not correspond to modes, i.e., the do not change the current mode, but are also prefixed with `255`: 
 
-- **SpeakJet Reset**: 1. 
+- **Speak&SID Reset**: 0. 
 
 - **SpeakJet Reset**: 1. 
 

@@ -192,7 +192,7 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 ## CPC Disk - Software 
 
-Currently, the (Speak&SID CPC DSK)[cpc/speakandsid/SPEAKSID.dsk] contains a demo program, a SID player with LED Lightshow, and a demo of the Serial Interface / UART - a simple terminal program written in BASIC. Some SID tunes are on the DSK as well. 
+Currently, the [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a demo program, a SID player with LED Lightshow, and a demo of the Serial Interface / UART - a simple terminal program written in BASIC. Some SID tunes are on the DSK as well. 
 
 ## Acknowledgements
 
@@ -201,3 +201,7 @@ Currently, the (Speak&SID CPC DSK)[cpc/speakandsid/SPEAKSID.dsk] contains a demo
 - [DaDMaN from the CPC Wiki Forum](http://www.cpcwiki.eu/forum/amstrad-cpc-hardware/new-amstrad-cpc-sound-board-(aka-sonique-sound-board)-sid-part-(wip)/) for providing the Z80 source code of his branch of Simon Owen's Z80 SID Player.
 
 - [Simon Owen](https://simonowen.com/sam/sidplay/) for the [Z80 SID Player.](https://github.com/simonowen/sidplay)
+
+Previous SID hardware soundcards for the CPC exist. The earliest one was featured in the [CPC International 8/1989 Issue.](https://archive.org/details/54_Amstrad_PC_International_1989-08).  
+Other attemps of connecting a SID to the CPC are documented on the CPC Wiki Forum. The hardware design of Speak&SID differs in major aspects from all of these, and is not related to any previous designs. 
+

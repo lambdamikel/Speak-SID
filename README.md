@@ -133,14 +133,14 @@ The incoming RX messages are buffered via interrupts at all time as soon as the 
 
 A number of control byte / commands determines the UART TX settings. These commands are: 
 
---------------------------------------------------------------------------------------------------
-| Command        | Command Byte | Command Argument Byte      | Explanation                       |
-|----------------|--------------|----------------------------|------------------------------------
-| Set Baud Rate  |      50      |  BAUDRATE                  | See table below for baud rates    |
-| Set Data Width |      51      |  5, 6, 7, 8                | 5 to 8 bits word width. 8 default |           
-| Set Parity     |      52      |  0 (no), 1 (odd), 2 (even) | No parity, odd or even Parity     | 
-| Set Stop Bits  |      53      |  1, 2                      | One or two stop bits              | 
---------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+| Command        | Command Byte | Command Argument Byte. Bold = default  | Explanation                       |
+|----------------|--------------|----------------------------------------|------------------------------------
+| Set Baud Rate  |      50      |  BAUDRATE                              | See table below for baud rates    |
+| Set Data Width |      51      |  5, 6, 7, **8**                        | 5 to 8 bits word width            |           
+| Set Parity     |      52      |  **0 (no)**, 1 (odd), 2 (even)         | No parity, odd or even parity     | 
+| Set Stop Bits  |      53      |  **1**, 2                              | One or two stop bits              | 
+--------------------------------------------------------------------------------------------------------------
 
 The BAUD rates are: 
 

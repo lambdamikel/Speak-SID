@@ -136,7 +136,7 @@ A number of control byte / commands determines the UART TX settings. These comma
 --------------------------------------------------------------------------------------------------------------
 | Command        | Command Byte | Command Argument Byte. Bold = default  | Explanation                       |
 |----------------|--------------|----------------------------------------|------------------------------------
-| Set Baud Rate  |      50      |  BAUDRATE                              | See table below for baud rates    |
+| Set Baud Rate  |      50      |  BAUDRATE, **9600** default            | See table below for baud rates    |
 | Set Data Width |      51      |  5, 6, 7, **8**                        | 5 to 8 bits word width            |           
 | Set Parity     |      52      |  **0 (no)**, 1 (odd), 2 (even)         | No parity, odd or even parity     | 
 | Set Stop Bits  |      53      |  **1**, 2                              | One or two stop bits              | 

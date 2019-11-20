@@ -170,9 +170,9 @@ The BAUD rates are:
 
 - **I2C Mode**: 7. Not implemented yet. 
 
-- **GPIO Mode**: 8. 
+- **GPIO Mode**: 8. Simple. The lower nibble of each byte sent to `&FBEE` (IOREQ WRITE) will be output to the 4 GPOs 1 to 4, and visalized on the LED Segment Bar. The current status of the 4 GPIs 1 to 4 can be read from `&FBEE` (IOREQ READ) at any tmie in that mode. 
 
-- **Echo Test Mode**: 9.
+- **Echo Test Mode**: 9. For testing the communication between the CPC and Speak&SID. In this mode, each byte sent (IOREQ WRITE) to port `&FBEE` is immediately echoed back and output on port `&FBEE` such that the next IOREQ READ will read the same value as just sent. 
 
 The following commands / control bytes do not correspond to modes, i.e., the do not change the current mode, but are also prefixed with `255`: 
 

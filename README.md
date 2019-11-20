@@ -73,9 +73,7 @@ project.](src/atmega8535/)
 I am able to provide Speak&SID as a kit, or only pre-programmed components (CPLD, ATMega), or even a fully assembled version inlcuding
 a connection cable and/or LambdaBoard expansion board backplane. Send me a mail if you are interrested. Or, just download the sources and build it from the [provided Gerbers](gerbers/speak&sid.zip) and [BOM](schematics/bom.jpg). 
 
-To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `make` and the [provided `Makefile`.](src/atmega8535/speaksid/Makefile). 
-
-template is again from Elliot Williams' book. See above. 
+To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `make` and the [provided `Makefile`.](src/atmega8535/speaksid/Makefile) The makefile template is again from Elliot Williams' "AVR Programming" book. See below (Acknowledgements). 
 
 ## Status LEDs 
 

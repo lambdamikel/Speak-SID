@@ -128,7 +128,8 @@ The current SpeakJet voice can be changed / altered in a number of ways, includi
 
 - **SID Mode**: 4. In this mode, the SID soundchip is turned on. The 28 SID registers of the SID soundchip are mapped to the CPC's IO range `&FAC0 - &FADC`. In addition, in this mode, Speak&SID is listening to `&FBEE` - any output to `&FBEE` will be output to the GPIO ports, hence setting the coresponding LED pattern on the LED Segment Bar. This can be used for programming lightshows, or volume level meters, etc. In order to **quit the SID mode**, send 255 to `&FBEE`. Notice that the GPIO is 4bit only, so only values 0-15 make a difference wrt. LED patterns (only the lower nibble of the byte). Notice that all IO requests in the `&FAC0 - &FADC` range directly go to the SID chip as long as the SID mode is enabled, hence resulting in maximal SID access speed (no ATMega involvement for SID access). 
 
-- **UART / Serial Mode**: 5. Enables the UART. One the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits, and word width. See table below. 
+- **UART / Serial Mode**: 5. Enables the UART. One the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits, and word width. See table below. BAUD rates above MIDI (312500) have not been tested. 
+
 The incoming RX messages are buffered via interrupts at all time as soon as the UART mode is enabled, and the so-far received buffer content and number of bytes in the buffer can be requested and retrieved at any time via a number of UART commands. 
 
 A number of control byte / commands determines the UART TX settings. These commands are: 
@@ -160,15 +161,15 @@ The BAUD rates are:
 |    10    | 115200         |
 |    11    | 208333         | 
 |    12    | 250000         |
-|    13    | 312500         | 
+|    13    | 312500 (MIDI)  | 
 |    14    | 416667         |
 |    15    | 625000         | 
 |    16    | 1250000        | 
 -----------------------------
 
-- **SPI Mode**: 6. Not implemented yet. 
+- **SPI Mode**: 6. Not implemented yet. In the meantime, patch / extend the firmware for your own SPI device yourself! Programming / flashing the ATMega over the SPI headers works, see below. 
 
-- **I2C Mode**: 7. Not implemented yet. 
+- **I2C Mode**: 7. Not implemented yet. In the meantime, patch / extend the firmware for your own I2C device yourself! 
 
 - **GPIO Mode**: 8. Simple. The lower nibble of each byte sent to `&FBEE` (IOREQ WRITE) will be output to the 4 GPOs 1 to 4, and visalized on the LED Segment Bar. The current status of the 4 GPIs 1 to 4 can be read from `&FBEE` (IOREQ READ) at any tmie in that mode. 
 
@@ -191,7 +192,7 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 ## CPC Disk - Software 
 
-Soon. 
+Currently, the (Speak&SID CPC DSK)[cpc/speakandsid/SPEAKSID.dsk] contains a demo program, a SID player with LED Lightshow, and a demo of the Serial Interface / UART - a simple terminal program written in BASIC. Some SID tunes are on the DSK as well. 
 
 ## Acknowledgements
 

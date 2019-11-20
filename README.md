@@ -116,11 +116,11 @@ The best documentation is the [ATMega source code itself.](src/atmega8535/speaks
 
 Speak&SID main IO port is `&FBEE`. This is the port that is / was being used by the Amstrad SSA-1 speech synthesizer. 
 
-In the following, a `control byte` or `command` is a sequence of at least 2 bytes starting with `255`. For example, to reset Speak&SID, send control byte `0`, i.e., send the sequence `255, 0`. The different modes of Speak&SID are entered by sending various control bytes. Note that, in order to send 255 as `payload` data, it needs to be escaped, otherwise it would be interpreted as starting a control byte. Hence, send `255, 255` to send `255` as payload data. 
+In the following, a **control byte** or **command** is a sequence of at least 2 bytes starting with `255`. For example, to reset Speak&SID, send control byte `0`, i.e., send the sequence `255, 0`. The different modes of Speak&SID are entered by sending various control bytes. Note that, in order to send 255 as `payload` data, it needs to be escaped, otherwise it would be interpreted as starting a control byte. Hence, send `255, 255` to send `255` as payload data. 
 
 In the following, the control bytes for setting the corresponding Speak&SID modes are listed: 
 
-- **Native SpeakJet Mode**: 2 (hence, send `255, 1` to enter this mode). If this mode is active,  every byte being sent to `&FBEE` will be handed over to the SpeakJet chip directly. Again, note that in order to send byte 255, you will need to send 255 twice.  In this mode, the current status of the SpeakJet chip will be visible on the corresponding Segment Bar LEDs (SJRDY, SJSPK, SJBUF), and the signals will also be available to read from port `&FBDE`. The lower three bits on `&FBDE` correspond to SpeakJet Ready (D0 = SJRDY LED), Speakjet Speaking (D1 = SJSPK LED), and SpeakJet Buffer Half Full (D3 = SJBUF LED). 
+- **Native SpeakJet Mode**: 2 (hence, send `255, 2` to enter this mode). If this mode is active,  every byte being sent to `&FBEE` will be handed over to the SpeakJet chip directly. Again, note that in order to send byte 255, you will need to send 255 twice.  In this mode, the current status of the SpeakJet chip will be visible on the corresponding Segment Bar LEDs (SJRDY, SJSPK, SJBUF), and the signals will also be available to read from port `&FBDE`. The lower three bits on `&FBDE` correspond to SpeakJet Ready (D0 = SJRDY LED), Speakjet Speaking (D1 = SJSPK LED), and SpeakJet Buffer Half Full (D3 = SJBUF LED). 
 
 The current SpeakJet voice can be changed / altered in a number of ways, including pitch, speed, volume, etc. Use the following control bytes: change volume (`20, <value>`), speed of speech (`21, <value>`), pitch (`22, <value>`), and "bend" (`23, <value>`). Once changed, the voice can always be tested using control byte / command `10` (test voice). Notice that the same voice is used for the SSA-1 mode (see next). 
 
@@ -128,13 +128,49 @@ The current SpeakJet voice can be changed / altered in a number of ways, includi
 
 - **SID Mode**: 4. In this mode, the SID soundchip is turned on. The 28 SID registers of the SID soundchip are mapped to the CPC's IO range `&FAC0 - &FADC`. In addition, in this mode, Speak&SID is listening to `&FBEE` - any output to `&FBEE` will be output to the GPIO ports, hence setting the coresponding LED pattern on the LED Segment Bar. This can be used for programming lightshows, or volume level meters, etc. In order to **quit the SID mode**, send 255 to `&FBEE`. Notice that the GPIO is 4bit only, so only values 0-15 make a difference wrt. LED patterns (only the lower nibble of the byte). Notice that all IO requests in the `&FAC0 - &FADC` range directly go to the SID chip as long as the SID mode is enabled, hence resulting in maximal SID access speed (no ATMega involvement for SID access). 
 
-- **UART / Serial Mode**: 5. Enables the UART. One the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits. In parallel, the incoming RX messages are buffered (using interrupts), and the so-far received content can be requested and retrieved at any time, using a number of commands to query the buffer for the number of available bytes, and to request the next byte from the input buffer, etc. A number of control byte / commands determines the UART TX settings - baud rate `50, <baud_rate>` (see table below); width `51, <width>` (5,6,7, or 8); parity `52, <parity>` (0, 1, 2 for no parity, odd parity, or even parity), and `52, <number stop bits>` to determine the number of stop bits (1 or 2). 
+- **UART / Serial Mode**: 5. Enables the UART. One the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits, and word width. See table below. 
+The incoming RX messages are buffered via interrupts at all time as soon as the UART mode is enabled, and the so-far received buffer content and number of bytes in the buffer can be requested and retrieved at any time via a number of UART commands. 
 
-- **SPI Mode**: 6.
+A number of control byte / commands determines the UART TX settings. These commands are: 
 
-- **I2C Mode**: 7.
+--------------------------------------------------------------------------------------------------
+| Command        | Command Byte | Command Argument Byte      | Explanation                       |
+|----------------|--------------|----------------------------|------------------------------------
+| Set Baud Rate  |      50      |  BAUDRATE                  | See table below for baud rates    |
+| Set Data Width |      51      |  5, 6, 7, 8                | 5 to 8 bits word width. 8 default |           
+| Set Parity     |      52      |  0 (no), 1 (odd), 2 (even) | No parity, odd or even Parity     | 
+| Set Stop Bits  |      53      |  1, 2                      | One or two stop bits              | 
+--------------------------------------------------------------------------------------------------
 
-- **GPIO Mode**: 8.
+The BAUD rates are: 
+
+-----------------------------
+| BAUDRATE | BAUDS          |
+|----------|----------------|
+|     0    | 2400           |
+|     1    | 4800           |
+|     2    | 9600 (DEFAULT) | 
+|     3    | 14400          |
+|     4    | 19200          | 
+|     5    | 28800          |
+|     6    | 31250          | 
+|     7    | 38400          |
+|     8    | 57600          | 
+|     9    | 76800          | 
+|    10    | 115200         |
+|    11    | 208333         | 
+|    12    | 250000         |
+|    13    | 312500         | 
+|    14    | 416667         |
+|    15    | 625000         | 
+|    16    | 1250000        | 
+-----------------------------
+
+- **SPI Mode**: 6. Not implemented yet. 
+
+- **I2C Mode**: 7. Not implemented yet. 
+
+- **GPIO Mode**: 8. 
 
 - **Echo Test Mode**: 9.
 
@@ -144,11 +180,13 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 - **SpeakJet Reset**: 1. 
 
-- **Get Version**: 99. 
+- **Get Mode**: 30. Return the current mode. Read it from `&FBEE`. 
 
-- **Wait 5 Seconds**: 100. 
+- **Get Version**: 99. Return the current version number. Read it from `&FBEE`. 
 
+- **Wait 5 Seconds**: 100. For testing pruposes. 
 
+- **ESCAPE 255**: 255. To send `255` as payload, send `255, 255`.  
 
 
 ## CPC Disk - Software 

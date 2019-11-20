@@ -168,6 +168,11 @@ The BAUD rates are:
 |    16    | 1250000        | 
 -----------------------------
 
+In the UART / Serial Mode, the receive ring buffer can hold 128 bytes currently, but it is of course up to you to change this. 
+In order to retrieve the number of bytes currently in the buffer that have not been read by the CPC yet, use control byte / command `40`. The number of bytes is available to read from port `&FBEE`. Then, the next unread byte can be retrieved using 
+control byte / command `41`, again from port `&FBEE`. So, first ask for the number of unread bytes in the buffer using `41`, and learn that there are `n` bytes to be read, then set up a loop which calls control byte / command `41` `n` times, reading `n` values from the input buffer from port `&FBEE`. See the provided BASIC example program on the CPC dsk. 
+
+
 - **SPI Mode**: 6. Not implemented yet. In the meantime, patch / extend the firmware for your own SPI device yourself! Programming / flashing the ATMega over the SPI headers works, see below. 
 
 - **I2C Mode**: 7. Not implemented yet. In the meantime, patch / extend the firmware for your own I2C device yourself! 
@@ -182,9 +187,13 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 - **SpeakJet Reset**: 1. 
 
-- **Get Mode**: 30. Return the current mode. Read it from `&FBEE`. 
+- **Get Mode**: 30. Return the current mode. Read it from port `&FBEE`. 
 
-- **Get Version**: 99. Return the current version number. Read it from `&FBEE`. 
+- **Get Number of Unread Bytes in UART Input Buffer**: 40. Only in UART mode. Returns the number of unread bytes in the ring input buffer. Read the value from port `&FBEE`.  See explanation above. 
+
+- **Get Next Unread Byte from UART Input Buffer**: 41. Only in UART mode. Read the next unread byte from the ring input buffer, and put it on port `&FBEE` for reading. See explanation above. 
+
+- **Get Version**: 99. Return the current version number. Read it from port `&FBEE`. 
 
 - **Wait 5 Seconds**: 100. For testing purposes. 
 

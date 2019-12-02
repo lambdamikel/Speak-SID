@@ -14,8 +14,8 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## Some Pictures 
 
-![PCB 1](images/speaksid-pcb-1-a.JPG)  
-![PCB 2](images/speaksid-pcb-1-b.JPG)  
+![PCB 2 Front](images/speaksid-pcb-2-a.JPG)  
+![PCB 1 Front](images/speaksid-pcb-1-a.JPG)  
 ![Breadboard 1](images/breadboard-1.JPG)
 ![Breadboard 2](images/breadboard-2.JPG)
 ![PCB](images/speakjet-pcb.jpg)

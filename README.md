@@ -10,7 +10,7 @@ This CPC expansion board offers:
 2. A sound synthesizer utilizing  the fabolous SID (Commodore 64) soundchip. Speak&SID CPC can use the original **6581**, the **8580**, as well as modern re-implementations of the SID chip such as **SwinSID** or **ARMSID**. To use the 6581, supply **12 V with positive center polarity** over the Speak&SID power barrel jack using a stabilized low noise (preferably linear) DC power supply; for the **8580**, **9 V** are required. **No extra PSU** is needed for **SwinSID** or **ARMSID**. 
 3. A general purpose multi-IO expansion, featuring a **Serial Interface (UART)**, a **SPI Interface**, an **I2C Interface**, as well as **4 digitial general purpose input/output ports (GPIOs)**. The 4 rightmost LEDs of the LED Segment Bar shows the status of the 4 GPIO outputs. Notice that Speak&SID supplies pin headers for GPIO, UART, SPI, and I2C. 
 
-Firmware updates to the CPLD can be acomplished "in system" by using the JTAG header; the ATMega microcontroller can be updated with a ISP USB programmer such as USBtinyISP connecting to the SPI headers via Dupoint cables.  
+Firmware updates to the CPLD can be acomplished "in system" by using the JTAG header; the ATMega microcontroller can be updated with a ISP USB programmer such as USBtinyISP connecting to the SPI headers via Dupont cables.  
 
 ## Some Pictures 
 
@@ -40,18 +40,18 @@ The **main components** are:
 - Speech chip: SpeakJet. Role: speech synthesis and sound synthesizer. 
 - Sound chip: SID 6581 or 8580, SwinSID, or ARMSID, or..... Role: sound chip for awesome SID tunes! 
 
-The source code for the CPLD and the ATMega are provided here (and HEX / JED firmware files as well). 
+The [source code for the CPLD and the ATMega are provided here](src/), and [HEX / JED firmware files as well.](firmware/) 
 
 CPC Speak&SID has **two reset buttons**: one for resetting the Speak&SID, and one for resetting the CPC. 
 
-CPC Speak&SID has **two trimmer / potentiometers**; the left potentiometer
+CPC Speak&SID has **two trimmers / potentiometers**; the left potentiometer
 controls the volume / signal level of the SpeakJet chip, the other one
 controls the SID volume level. The signal stereo routing is determined
 by the 10 DIP switches, see below.
 
 The sound comes out of the **audio stereo jack**. The left/right channel can be assigned individually (SpeakJet / SID). 
-Also, a switch determines whether the determined left or right channel audio is fed back into the CPC to be heard
-in the internal CPC speaker. 
+Also, a DIP switch determines whether the determined left or right channel audio is fed back into the CPC to be heard
+in the CPC's internal speaker. 
 
 The optional **power barrel jack** need center polarity, and either 12 V (SID 6581) or 9 V (SID 8580). 
 
@@ -73,9 +73,7 @@ project.](src/atmega8535/)
 I am able to provide Speak&SID as a kit, or only pre-programmed components (CPLD, ATMega), or even a fully assembled version inlcuding
 a connection cable and/or LambdaBoard expansion board backplane. Send me a mail if you are interrested. Or, just download the sources and build it from the [provided Gerbers](gerbers/speak&sid.zip) and [BOM](schematics/bom.jpg). 
 
-To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `make` and the [provided `Makefile`.](src/atmega8535/speaksid/Makefile). 
-
-template is again from Elliot Williams' book. See above. 
+To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `make` and the [provided `Makefile`.](src/atmega8535/speaksid/Makefile) The makefile template is again from Elliot Williams' "AVR Programming" book. See below (Acknowledgements). 
 
 ## Status LEDs 
 
@@ -115,20 +113,24 @@ I am using the USBtinyISP programmer. Just connect the progammer's SPI pins with
 The best documentation is the [ATMega source code itself.](src/atmega8535/speaksid/speaksid.c) 
 
 Speak&SID main IO port is `&FBEE`. This is the port that is / was being used by the Amstrad SSA-1 speech synthesizer. 
+In addition, some modes use `&FBDE` as a status port. The SID is mapped into IO range `&FAC0 - &FADC`. 
 
-In the following, a **control byte** or **command** is a sequence of at least 2 bytes starting with `255`. For example, to reset Speak&SID, send control byte `0`, i.e., send the sequence `255, 0`. The different modes of Speak&SID are entered by sending various control bytes. Note that, in order to send 255 as `payload` data, it needs to be escaped, otherwise it would be interpreted as starting a control byte. Hence, send `255, 255` to send `255` as payload data. 
+In the following, a **control byte** or **command** is a sequence of at least 2 bytes starting with `255`. For example, to reset Speak&SID via the reset command / control byte (command `0`), send `255, 0`. The different modes of Speak&SID are entered by sending various control bytes. Note that, in order to send 255 as `payload` data, it needs to be escaped, otherwise it would be interpreted as starting a control byte. Hence, send `255, 255` to send `255` as payload data. 
 
 In the following, the control bytes for setting the corresponding Speak&SID modes are listed: 
 
-- **Native SpeakJet Mode**: 2 (hence, send `255, 2` to enter this mode). If this mode is active,  every byte being sent to `&FBEE` will be handed over to the SpeakJet chip directly. Again, note that in order to send byte 255, you will need to send 255 twice.  In this mode, the current status of the SpeakJet chip will be visible on the corresponding Segment Bar LEDs (SJRDY, SJSPK, SJBUF), and the signals will also be available to read from port `&FBDE`. The lower three bits on `&FBDE` correspond to SpeakJet Ready (D0 = SJRDY LED), Speakjet Speaking (D1 = SJSPK LED), and SpeakJet Buffer Half Full (D3 = SJBUF LED). 
+- **Native SpeakJet Mode**: 2 (hence, send `255, 2` to enter this mode). If this mode is active,  every byte being sent to `&FBEE` will be handed over to the SpeakJet chip directly. Again, note that in order to send byte 255 to the SpeakJet chip, you will need to escape it, as explained, and send 255 **twice** (allophone 255 is some R2D2 sound effect if I remember correctly).  In this mode, the current status of the SpeakJet chip will be visible on the corresponding Segment Bar LEDs (SJRDY, SJSPK, SJBUF), and the signals will also be available to read from port `&FBDE`. The lower three bits on `&FBDE` correspond to SpeakJet Ready (D0 = SJRDY LED), Speakjet Speaking (D1 = SJSPK LED), and SpeakJet Buffer Half Full (D3 = SJBUF LED). 
 
-The current SpeakJet voice can be changed / altered in a number of ways, including pitch, speed, volume, etc. Use the following control bytes: change volume (`20, <value>`), speed of speech (`21, <value>`), pitch (`22, <value>`), and "bend" (`23, <value>`). Once changed, the voice can always be tested using control byte / command `10` (test voice). Notice that the same voice is used for the SSA-1 mode (see next). 
+The current SpeakJet voice can be changed / altered in a number of ways, including pitch, speed, volume, etc. Use the following control bytes: change volume (`20, <value>`), speed of speech (`21, <value>`), pitch (`22, <value>`), and "bend" (`23, <value>`). Once changed, the voice can always be tested using control byte / command `10` (test voice). Notice that the same voice is used for the SSA-1 mode (see next). The possible values for Volume, Speed of Speech, Pitch, and Bend, are [documented in the SpeakJet User Manual](manuals/speakjet-usermanual.pdf). 
+
+Please note that you cannot simply send ASCII codes to the SpeakJet - you need to send allophones. The SpeakJet allophones are again listed in the [SpeakJet User Manual](manuals/speakjet-usermanual.pdf). There is also a program from the maker of the SpeakJet, called [the PhraseALator](manuals/PhraseALator.zip), which will do a text-to-allophone translation. The computed allophone codes / bytes can be sent to the SpeakJet. Note that there is also a demo program on the [CPC Speak&SID disk](cpc/speakandsid/SPEAKSID.dsk) whose allophone bytes for the produced utterance were computed using the PhraseALator. 
 
 - **Amstrad SSA-1 Emulation Mode**: 3. In this mode the Amstrad SSA-1 speech synthesizer is emulated. On port `&FBEE`, emulated SBY and LRQ SP0256-AL2 signals are visible, such that existing CPC software will think that an Amstrad SSA-1 is present. The emulation has been tested with SSA-1 supporting speech games such as "Roland in Space", the SSA-1 driver software, "Tubaruba", and others. 
 
 - **SID Mode**: 4. In this mode, the SID soundchip is turned on. The 28 SID registers of the SID soundchip are mapped to the CPC's IO range `&FAC0 - &FADC`. In addition, in this mode, Speak&SID is listening to `&FBEE` - any output to `&FBEE` will be output to the GPIO ports, hence setting the coresponding LED pattern on the LED Segment Bar. This can be used for programming lightshows, or volume level meters, etc. In order to **quit the SID mode**, send 255 to `&FBEE`. Notice that the GPIO is 4bit only, so only values 0-15 make a difference wrt. LED patterns (only the lower nibble of the byte). Notice that all IO requests in the `&FAC0 - &FADC` range directly go to the SID chip as long as the SID mode is enabled, hence resulting in maximal SID access speed (no ATMega involvement for SID access). 
 
-- **UART / Serial Mode**: 5. Enables the UART. One the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits, and word width. See table below. 
+- **UART / Serial Mode**: 5. Enables the UART. Once the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits, and word width. See table below. BAUD rates above MIDI (312500) have not been tested. 
+
 The incoming RX messages are buffered via interrupts at all time as soon as the UART mode is enabled, and the so-far received buffer content and number of bytes in the buffer can be requested and retrieved at any time via a number of UART commands. 
 
 A number of control byte / commands determines the UART TX settings. These commands are: 
@@ -160,17 +162,22 @@ The BAUD rates are:
 |    10    | 115200         |
 |    11    | 208333         | 
 |    12    | 250000         |
-|    13    | 312500         | 
+|    13    | 312500 (MIDI)  | 
 |    14    | 416667         |
 |    15    | 625000         | 
 |    16    | 1250000        | 
 -----------------------------
 
-- **SPI Mode**: 6. Not implemented yet. 
+In the UART / Serial Mode, the receive ring buffer can hold 128 bytes currently, but it is of course up to you to change this. 
+In order to retrieve the number of bytes currently in the buffer that have not been read by the CPC yet, use control byte / command `40`. The number of bytes is available to read from port `&FBEE`. Then, the next unread byte can be retrieved using 
+control byte / command `41`, again from port `&FBEE`. So, first ask for the number of unread bytes in the buffer using `41`, and learn that there are `n` bytes to be read, then set up a loop which calls control byte / command `41` `n` times, reading `n` values from the input buffer from port `&FBEE`. See the provided BASIC example program on the CPC dsk. 
 
-- **I2C Mode**: 7. Not implemented yet. 
 
-- **GPIO Mode**: 8. Simple. The lower nibble of each byte sent to `&FBEE` (IOREQ WRITE) will be output to the 4 GPOs 1 to 4, and visalized on the LED Segment Bar. The current status of the 4 GPIs 1 to 4 can be read from `&FBEE` (IOREQ READ) at any tmie in that mode. 
+- **SPI Mode**: 6. Not implemented yet. In the meantime, patch / extend the firmware for your own SPI device yourself! Programming / flashing the ATMega over the SPI headers works, see below. 
+
+- **I2C Mode**: 7. Not implemented yet. In the meantime, patch / extend the firmware for your own I2C device yourself! 
+
+- **GPIO Mode**: 8. Simple. The lower nibble of each byte sent to `&FBEE` (IOREQ WRITE) will be output to the 4 GPOs 1 to 4, and visalized on the LED Segment Bar. The current status of the 4 GPIs 1 to 4 can be read from `&FBEE` (IOREQ READ) at any time in that mode. 
 
 - **Echo Test Mode**: 9. For testing the communication between the CPC and Speak&SID. In this mode, each byte sent (IOREQ WRITE) to port `&FBEE` is immediately echoed back and output on port `&FBEE` such that the next IOREQ READ will read the same value as just sent. 
 
@@ -180,18 +187,22 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 - **SpeakJet Reset**: 1. 
 
-- **Get Mode**: 30. Return the current mode. Read it from `&FBEE`. 
+- **Get Mode**: 30. Return the current mode. Read it from port `&FBEE`. 
 
-- **Get Version**: 99. Return the current version number. Read it from `&FBEE`. 
+- **Get Number of Unread Bytes in UART Input Buffer**: 40. Only in UART mode. Returns the number of unread bytes in the ring input buffer. Read the value from port `&FBEE`.  See explanation above. 
 
-- **Wait 5 Seconds**: 100. For testing pruposes. 
+- **Get Next Unread Byte from UART Input Buffer**: 41. Only in UART mode. Read the next unread byte from the ring input buffer, and put it on port `&FBEE` for reading. See explanation above. 
+
+- **Get Version**: 99. Return the current version number. Read it from port `&FBEE`. 
+
+- **Wait 5 Seconds**: 100. For testing purposes. 
 
 - **ESCAPE 255**: 255. To send `255` as payload, send `255, 255`.  
 
 
 ## CPC Disk - Software 
 
-Soon. 
+Currently, the [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a SpeakJet demo program, a SID player with LED Lightshow, and a demo of the Serial Interface / UART - a simple terminal program written in BASIC. Some SID tunes are on the DSK as well. 
 
 ## Acknowledgements
 
@@ -200,3 +211,6 @@ Soon.
 - [DaDMaN from the CPC Wiki Forum](http://www.cpcwiki.eu/forum/amstrad-cpc-hardware/new-amstrad-cpc-sound-board-(aka-sonique-sound-board)-sid-part-(wip)/) for providing the Z80 source code of his branch of Simon Owen's Z80 SID Player.
 
 - [Simon Owen](https://simonowen.com/sam/sidplay/) for the [Z80 SID Player.](https://github.com/simonowen/sidplay)
+
+Previous SID hardware soundcards for the CPC exist. The earliest one was featured in the [CPC International 08/1989 Issue.](https://archive.org/details/54_Amstrad_PC_International_1989-08) 
+Other attemps of connecting a SID to the CPC are documented on the CPC Wiki Forum. The hardware design of Speak&SID differs in major aspects from all of these, and is not related to any previous designs in any way. 

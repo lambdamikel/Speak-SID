@@ -108,6 +108,8 @@ The firmware can be updated without having to remove the ATMega uC from the sock
 
 I am using the USBtinyISP programmer. Just connect the progammer's SPI pins with the corresponding Speak&SID SPI pins, using DuPont cables: MOSI <-> MOSI, MISO <-> MISO, SCK <-> SCK, and GND <-> GND. Note that VCC might not be required. If your connecting to VCC, make sure to FIRST power on the CPC and Speak&SID BEFORE plugging in the USB cable into your computer, otherwise the USB port is powering the CPC. VCC should not be required for programming. With the proper connections in place and the CPC and Speak&SID up and running, use the provided `make flash` (entered into a `command.com` shell) from the `Makefile` **whilst holding the Speak&SID Reset button pushed down until the programming process has finished.** The firmware HEX file is small, so it only takes about 20 seconds to programm the firmware. 
 
+In case you encounter problems, it might be the reset button bouncing... in that case, try a couple of times, and if that fails there is still the option to simply bridge the reset button with a cable (would require some temporary soldering or similar). Flash programming only works when the ATmega is constantly held in reset state. 
+
 ## Firmware Documentation 
 
 The best documentation is the [ATMega source code itself.](src/atmega8535/speaksid/speaksid.c) 
@@ -181,9 +183,11 @@ control byte / command `41`, again from port `&FBEE`. So, first ask for the numb
 
 - **Echo Test Mode**: 9. For testing the communication between the CPC and Speak&SID. In this mode, each byte sent (IOREQ WRITE) to port `&FBEE` is immediately echoed back and output on port `&FBEE` such that the next IOREQ READ will read the same value as just sent. 
 
+- **MIDI SID Mode**: 11. In this mode, the SID is being turned, and the UART / Serial Interface is being configured for MIDI IN. Incoming MIDI messages are being buffered. The status of the buffer can be inquired by reading from port `&FBEE` - if a `0`  is read, no unread data is available. If a `1` is read, then the *next read from port `&FBEE` will retrieve the next available unread byte from the buffer*. The MIDI message byte can then be interpreted by the CPC (running a machine code program) and be turned into corresponding SID register writes, by writing to the corresponding register port in IO range `&FAC0 - &FADC`. It is hence possible to control the SID chip via MIDI messages, and turn the CPC with Speak&SID into an inexpensive CPC SID MIDI Synthesizer. What's more, the SpeakJet can also be controlled via MIDI in a similar way (just output phonemes to `&FBEE`, as in the *Native SpeakJet Mode*, or play the CPC's internal AY 3-8192 sound chip in parallel, resulting in a capable and unique CPC synthesizer with 3 sound generators (SpeakJet, SID, AY). The CPC software is still work in progress and will be uploaded here soon.   
+
 The following commands / control bytes do not correspond to modes, i.e., the do not change the current mode, but are also prefixed with `255`: 
 
-- **Speak&SID Reset**: 0. 
+- **Test Voice**: 10. Speak "CPC Speak&SID" using the current voice settings for volume (control byte 20), speed (control byte 21), pitch (control byte 22), and bend (control byte 23). See explanation of Native Mode. 
 
 - **SpeakJet Reset**: 1. 
 

@@ -16,7 +16,7 @@
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 
-   Speak&SID CPC version 1, Copyright (C) 2019 Michael Wessel
+   Speak&SID CPC version 2, Copyright (C) 2019 Michael Wessel
    Speak&SID CPC comes with ABSOLUTELY NO WARRANTY. 
    This is free software, and you are welcome to redistribute it
    under certain conditions. 
@@ -45,7 +45,7 @@
 // Version Number 
 //
  
-#define VERSION 1 
+#define VERSION 2
 
 //
 // AVR Frequency 16 MHz 
@@ -68,7 +68,7 @@
 // Speak&SID State Management
 // 
 
-typedef enum { SSA1, SPEAKJET, ECHO, SID, UART, SPI, I2C, GPIO } MODE;  
+typedef enum { SSA1, SPEAKJET, ECHO, SID, UART, SPI, I2C, GPIO, MIDISID } MODE;  
 static volatile MODE cur_mode = SSA1; 
 static volatile MODE last_mode = SSA1;  
 
@@ -173,7 +173,7 @@ volatile uint8_t init[] = { 20, VOL, 21, SPEED, 22, PITCH, 23, BEND };
 #define ENABLE_INPUT  DDRA = 0b00000000;            
 #define ENABLE_OUTPUT DDRA = 0b11111111;            
 
-#define DATA_FROM_CPC(data) ENABLE_INPUT;  SET_BIT(ATMEGAREADYPORT, ATMEGAREADY); loop_until_bit_is_set(CTRLIN, SPEAKWR); data = FROMCPC; loop_until_bit_is_clear(CTRLIN, SPEAKWR); CLEAR_BIT(ATMEGAREADYPORT, ATMEGAREADY); 
+#define DATA_FROM_CPC(data) ENABLE_INPUT;  SET_BIT(ATMEGAREADYPORT, ATMEGAREADY); loop_until_bit_is_set(CTRLIN, SPEAKWR); data = FROMCPC; loop_until_bit_is_clear(CTRLIN, SPEAKWR); CLEAR_BIT(ATMEGAREADYPORT, ATMEGAREADY) 
 
 #define DATA_TO_CPC(data)   ENABLE_OUTPUT; TOCPC = data; LOAD_CPLD; ENABLE_INPUT 
 
@@ -557,6 +557,8 @@ ISR (INT0_vect) {  // SPEAKJET READY PD2 INT0
 // CPC IOREQ & READ via Interrupt 2 
 // 
 
+volatile uint8_t MIDISID_STATE_COUNTER = 0; 
+
 ISR (INT2_vect) {  // SSA1 SPEECH READ REQ
 
   if (! disable_once) {
@@ -568,7 +570,20 @@ ISR (INT2_vect) {  // SSA1 SPEECH READ REQ
     } else if (cur_mode == GPIO) {
       data = (GPIIN & 0b00000011) | ((GPIIN & 0b00011000) >> 1); 
       DATA_TO_CPC(data); 
-    } 
+    } else if (cur_mode == MIDISID) {
+      if (! MIDISID_STATE_COUNTER ) { 
+	data = read_pos != write_pos; 
+	if (data) {
+	  MIDISID_STATE_COUNTER = 1; 
+	}
+      } else { 
+	data = buffer[read_pos]; 
+	read_pos ++; 
+	read_pos %= SIZE; 
+	MIDISID_STATE_COUNTER = 0; 
+      }
+      DATA_TO_CPC(data);       
+    }
   }
 }
 
@@ -739,7 +754,9 @@ int main(void) {
 
 	if (data != 255) { 
 
-	CLEAR_BIT(SIDPORT, SIDON);
+	if (cur_mode != MIDISID) { 
+	  CLEAR_BIT(SIDPORT, SIDON);
+	}
 	
 	switch (data) {
 	case 0 : process_reset(); break; 
@@ -770,9 +787,27 @@ int main(void) {
 	case 8 : cur_mode = GPIO; break; 
 	case 9 : cur_mode = ECHO; break; 
 
+	case 11 : cur_mode = MIDISID; 
+
+	  SET_BIT(SIDPORT, SIDON);	  
+	  SERIAL_BAUDRATE = 6; 
+	  SERIAL_WIDTH = 8; 
+	  SERIAL_PARITY = 0; 
+	  SERIAL_STOP_BITS = 1; 	  
+	  uart_init(); 
+	  
+	  //write_pos = 10;
+	  //read_pos = 0; 
+	  //for (uint8_t i = 0; i < 10; i++) {
+	  //  buffer[i] = i+1; 
+	  //}	   
+	  MIDISID_STATE_COUNTER = 0; 
+
+	  break;  
+
         // non mode-changing: exit with continue; break; : 
 
-	case 10 : test_voice(); continue; break; 	  
+	case 10 : test_voice(); continue; break; 	
 
 	case 20 : 
 	  DATA_FROM_CPC(data); 
@@ -922,6 +957,13 @@ int main(void) {
       case GPIO : 
 	// output WRITE request -> to output port, only lower nibble
 	GPOPORT = (data & 15) << 4; 
+	break; 
+
+      case MIDISID : 
+	// see ISR (INT2_vect) for protocol -
+	// read from &FBEE triggers interrupt. 
+	// if byte is available, signal 1, else 0. 
+	// if byte is available, next read from &FBEE will fetch the byte 
 	break; 
 		
       }      

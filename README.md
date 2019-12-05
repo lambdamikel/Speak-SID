@@ -24,6 +24,8 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 - [Second SID Player Demo - Line Out Recording and LED Lightshow](https://youtu.be/FXDS3pdf-w8) 
 - [First PCB Version \& SID Player Demo](https://youtu.be/xVo5ycUuM5Q)
+- [CPC MIDI IN SID+AY Synthesizer](https://youtu.be/4esnHlCg138) 
+https://youtu.be/FXDS3pdf-w8) 
 - [Breadboard Prototype - First SID BASIC Test](https://youtu.be/dJlccupSALY) 
 - [Breadboard Prototype - Amstrad SSA-1 Emulation Test](https://youtu.be/zLsgOHT1fmA)
 
@@ -183,7 +185,7 @@ control byte / command `41`, again from port `&FBEE`. So, first ask for the numb
 
 - **Echo Test Mode**: 9. For testing the communication between the CPC and Speak&SID. In this mode, each byte sent (IOREQ WRITE) to port `&FBEE` is immediately echoed back and output on port `&FBEE` such that the next IOREQ READ will read the same value as just sent. 
 
-- **MIDI SID Mode**: 11. Turn your CPC with Speak&SID into a powerful MIDI synthesizer! In this mode, the SID is being turned on, and the UART / Serial Interface is being configured for MIDI IN. Incoming MIDI messages are being buffered. The status of the buffer can be inquired by reading from port `&FBEE` - if a `0`  is read, no unread data is available. If a `1` is read, then the *next read from port `&FBEE` will retrieve the next available unread MIDI message byte from the buffer*. A CPC machine code program can just run a tight loop, constantly reading from port `&FBEE` to get a *stream of MIDI bytes* from Speak&SID.  The MIDI bytes can then be interpreted accordingly, e.g., MIDI NOTE ON/OFF messages can be turned into corresponding SID register writes for making a sound. The SID registers are available in the IO port range `&FAC0 - &FADC`. It is hence possible to control the SID chip via MIDI messages. In addition, the SpeakJet can also be controlled in a similar way, by writing the SpeakJet native phonemes to port `&FBEE`. And nothing prevents use from also playing the CPC's internal AY 3-8192 sound chip in parallel, resulting in a capable and unique CPC synthesizer with 3 sound generators (SpeakJet, SID, AY) and 10 channel polyphony (3 SID, 3 AY, 4 SpeakJet - the SpeakJet is actually a sound synthesizer as well!) I am still working on the CPC software to make this happen. Stay tune, the program will be uploaded here soon.   
+- **MIDI SID Mode**: 11. Turn your CPC with Speak&SID into a powerful MIDI synthesizer! In this mode, the SID is being turned on, and the UART / Serial Interface is being configured for MIDI IN. Incoming MIDI messages are being buffered. The status of the buffer can be inquired by reading from port `&FBEE` - if a `0`  is read, no unread data is available. If a `1` is read, then the *next read from port `&FBEE` will retrieve the next available unread MIDI message byte from the buffer*. A CPC machine code program can just run a tight loop, constantly reading from port `&FBEE` to get a *stream of MIDI bytes* from Speak&SID.  The MIDI bytes can then be interpreted accordingly, e.g., MIDI NOTE ON/OFF messages can be turned into corresponding SID register writes for making a sound. The SID registers are available in the IO port range `&FAC0 - &FADC`. It is hence possible to control the SID chip via MIDI messages. In addition, the SpeakJet can also be controlled in a similar way, by writing the SpeakJet native phonemes to port `&FBEE`. And nothing prevents use from also playing the CPC's internal AY 3-8192 sound chip in parallel, resulting in a capable and unique CPC synthesizer with 3 sound generators (SpeakJet, SID, AY) and 10 channel polyphony (3 SID, 3 AY, 4 SpeakJet - the SpeakJet is actually a sound synthesizer as well!). Check out the demo program `SYNTH.BAS` on the `SPEAKJET.DSK`. 
 
 The following commands / control bytes do not correspond to modes, i.e., the do not change the current mode, but are also prefixed with `255`: 
 
@@ -206,7 +208,7 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 ## CPC Disk - Software 
 
-Currently, the [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a SpeakJet demo program, a SID player with LED Lightshow, and a demo of the Serial Interface / UART - a simple terminal program written in BASIC. Some SID tunes are on the DSK as well. 
+Thre are two DSK images - [`SPEAKSID.DSK`](cpc/speakandsid/SPEAKSID.dsk), and [`SIDPLAY.DSK`](cpc/SIDPLAY.dsk). The latter one contains a SID tune player with LED Lightshow, and some SID tunes. The [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a SpeakJet demo program, a demo of the Serial Interface / UART (simple terminal program), a GPIO test program, and 2 BASIC SID test programs. The biggest program on this disk is the `SYNTH.BAS` MAXAM assembler program that implements the *MIDI IN realtime SID+AY CPC Synthesizer*. 
 
 ## Acknowledgements
 

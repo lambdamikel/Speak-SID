@@ -1,6 +1,6 @@
 # Speak & SID CPC 
 
-A Speech Synthesizer and SID Soundcard for the Amstrad CPC 
+A Speech Synthesizer, SID Soundcard, and MIDI IN SID+AY Synthesizer for the Amstrad CPC 
 
 Speak&SID plugs into the expansion port of the CPC, and is a M4-compatible expansion card. A cable or a CPC expansion board backplane (such as the Mother4X or the **LambdaBoard**) is recommended, and in fact required in case more than one expansion card is being used. Else, a simple 50pin IDC ribbon cable will do as well. 
 

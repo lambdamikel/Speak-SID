@@ -25,7 +25,6 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 - [Second SID Player Demo - Line Out Recording and LED Lightshow](https://youtu.be/FXDS3pdf-w8) 
 - [First PCB Version \& SID Player Demo](https://youtu.be/xVo5ycUuM5Q)
 - [CPC MIDI IN SID+AY Synthesizer](https://youtu.be/4esnHlCg138) 
-https://youtu.be/FXDS3pdf-w8) 
 - [Breadboard Prototype - First SID BASIC Test](https://youtu.be/dJlccupSALY) 
 - [Breadboard Prototype - Amstrad SSA-1 Emulation Test](https://youtu.be/zLsgOHT1fmA)
 

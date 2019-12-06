@@ -787,20 +787,17 @@ int main(void) {
 	case 8 : cur_mode = GPIO; break; 
 	case 9 : cur_mode = ECHO; break; 
 
-	case 11 : cur_mode = MIDISID; 
+	case 11 : 
 
+	  cur_mode = MIDISID; 
 	  SET_BIT(SIDPORT, SIDON);	  
+
 	  SERIAL_BAUDRATE = 6; 
 	  SERIAL_WIDTH = 8; 
 	  SERIAL_PARITY = 0; 
 	  SERIAL_STOP_BITS = 1; 	  
 	  uart_init(); 
 	  
-	  //write_pos = 10;
-	  //read_pos = 0; 
-	  //for (uint8_t i = 0; i < 10; i++) {
-	  //  buffer[i] = i+1; 
-	  //}	   
 	  MIDISID_STATE_COUNTER = 0; 
 
 	  break;  

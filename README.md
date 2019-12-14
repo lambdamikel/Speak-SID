@@ -38,9 +38,11 @@ GPL 3
 The **main components** are: 
 
 - Microcontroller: ATMega 8535 @ 16 MHz. Role: Brain of Speak&SID. Controls the SpeakSet, UART, SPI, I2C, GPIO, and implements the Amstrad SSA-1 emulation.
-- CPLD: Xilinx 9536. Role: Address decoding, SID control and 1 MHz clock, glue logic functions. 
+- CPLD: Xilinx 9536 (XL) or Xilinx 9572 (XL), 15C is sufficiently fast. Role: Address decoding, SID control and 1 MHz clock, glue logic functions. 
 - Speech chip: SpeakJet. Role: speech synthesis and sound synthesizer. 
 - Sound chip: SID 6581 or 8580, SwinSID, or ARMSID, or..... Role: sound chip for awesome SID tunes! 
+
+**A word of advice and warning** - the **6581 SIDs are extremely brittle** these days. You will make sure to supply not more than 12 V... I fried 2 of them by using a PSU which supplied 12.4 V. You have been warned! I recommend the 8580 which is much more robust, or use an ARMSID in the first place - no need for the extra PSU. 
 
 The [source code for the CPLD and the ATMega are provided here](src/), and [HEX / JED firmware files as well.](firmware/) 
 

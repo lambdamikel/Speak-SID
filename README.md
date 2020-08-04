@@ -13,6 +13,12 @@ This CPC expansion board offers:
 
 Firmware updates to the CPLD can be acomplished "in system" by using the JTAG header; the ATMega microcontroller can be updated with a ISP USB programmer such as USBtinyISP connecting to the SPI headers via Dupont cables.  
 
+## News
+
+ - 7/15/2020:  Thanks to Microchip (makers of the ATmega) for tweeting about Speak&SID: 
+
+![Microchip Makes](images/microchip-makes.jpg)
+
 ## Some Pictures 
 
 ![PCB 2 Front](images/speaksid-pcb-2-a.JPG)  

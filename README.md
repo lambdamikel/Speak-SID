@@ -29,6 +29,9 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## Some YouTube Videos 
 
+- [Speak&SID in Concert - Real SID 6581 R4](https://www.youtube.com/watch?v=F0o9n72yIyM) 
+- [Speak&SID SwinSID Demo - Cosmic Force Soundtrack](https://www.youtube.com/watch?v=tFRjB9t4wOg) 
+- [Speak&SID ARMSID Demo - Cosmic Force Soundtrack](https://www.youtube.com/watch?v=XJ6o9F7t1Qk)
 - [Second SID Player Demo - Line Out Recording and LED Lightshow](https://youtu.be/FXDS3pdf-w8)
 - [First PCB Version \& SID Player Demo](https://youtu.be/xVo5ycUuM5Q)
 - [CPC MIDI IN SID+AY Synthesizer](https://youtu.be/4esnHlCg138)

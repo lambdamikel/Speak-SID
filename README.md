@@ -15,9 +15,11 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## News
 
+ - 10/18/2020: The last produced Speak&SID (together with a LambdaBoard 2 Port Expander)  goes to [Markus Hohmann aka "Devilmarkus"](https://www.cpcwiki.eu/index.php/User:Devilmarkus) as a Giveaway / Freebie to acknowledge his never ending support and thank him for his contributions to the [German CPC Scene](http://cpcwiki.de/forum/), and great CPC tools such as his JavaCPC emulator, CDT2WAV, and DiskUtil, which I use on a daily basis. Thanks, Markus! Long live the CPC. Over a year, I have sold 30 Speak&SID, and I am out of PCBs by now. 
  - 7/15/2020:  Thanks to Microchip (makers of the ATmega) for tweeting about Speak&SID: 
 
 ![Microchip Makes](images/microchip-makes.jpg)
+
 
 ## Some Pictures 
 

@@ -31,13 +31,13 @@ having to remove and add cards all the time. We tried various
 after-market "hacks" in order to support this and came up with a
 solution that requires cutting the CPC IOREQ trace on the LS3 and
 Speak&SID PCBs. This signal usually goes into the CPLD address
-decoder. Do disable the signal, a 2-position switch is used that
-either connects the CPLD pin to the IOREQ signal from the CPC, or
-disables it by connecting it to +5V / VCC via a 4.7 kOhm resistor.
-That way, each card (LS3 and Speak&SID) can be en- and disabled
-individually with a switch. I should have thought of such a switch in
-the first place. Fortunately, this is a straight-forward PCB mod, even
-if it requires cutting a track and some soldering.
+decoder. A 2-position switch is used that either enables the card by
+connecting the CPLD pin to the IOREQ signal from the CPC, or disables
+it by routing it to +5V / VCC via a 4.7 kOhm resistor (the signal is
+low-active).  That way, each card (LS3 and Speak&SID) can be turned on
+and off individually with a switch. I should have thought of such a
+switch in the first place. Fortunately, this is a straight-forward PCB
+mod, even if it requires cutting a track and some soldering.
 
 
 

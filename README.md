@@ -15,6 +15,34 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## News
 
+- 03/20/2021: Here is a [great demo video by Manfred Gross, showing
+LambdaSpeak 3 and Speak&SID in action!](https://youtu.be/c94lG-UYBnE)
+
+![Manfred's CPC](images/manfred.png)
+
+What an amazing CPC 6128 setup - unbelievable that all these hardware
+extensions coexist on one Z80 databus!
+
+This was a bit challenging to achieve, because both Speak&SID and
+LambdaSpeak emulate the SSA-1 Speech Synthesizer, and hence occupy the
+same port `&FBEE`. He was looking for a solution that would allow him
+to have all expansions connected to the CPC permanentely, without
+having to remove and add cards all the time. We tried various
+after-market "hacks" in order to support this and came up with a
+solution that requires cutting the CPC IOREQ trace on the LS3 and
+Speak&SID PCBs. This signal usually goes into the CPLD address
+decoder. Do disable the signal, a 2-position switch is used that
+either connects the CPLD pin to the IOREQ signal from the CPC, or
+disables it by connecting it to +5V / VCC via a 4.7 kOhm resistor.
+That way, each card (LS3 and Speak&SID) can be en- and disabled
+individually with a switch. I should have thought of such a switch in
+the first place. Fortunately, this is a straight-forward PCB mod, even
+if it requires cutting a track and some soldering.
+
+
+
+## Older News
+
  - 10/18/2020: The last produced Speak&SID (together with a LambdaBoard 2 Port Expander)  goes to [Markus Hohmann aka "Devilmarkus"](https://www.cpcwiki.eu/index.php/User:Devilmarkus) as a Giveaway / Freebie to acknowledge and thank him for his never ending support and contributions to the [German CPC Scene](http://cpcwiki.de/forum/), including his great CPC tools such as the JavaCPC emulator, CDT2WAV, and DiskUtil, all of which I use on a daily basis. Thanks, Markus! Long live the CPC. Over a year, I have sold 30 Speak&SID, and I am out of PCBs by now. 
  - 7/15/2020:  Thanks to Microchip (makers of the ATmega) for tweeting about Speak&SID: 
 

@@ -39,6 +39,15 @@ and off individually with a switch. I should have thought of such a
 switch in the first place. Fortunately, this is a straight-forward PCB
 mod, even if it requires cutting a track and some soldering.
 
+Here are some annotated images that explain the mod: 
+
+![Speak&SID Mod 1](images/sid-1.jpg)
+
+![Speak&SID Mod 2](images/sid-2.jpg)
+
+![Speak&SID Mod 3](images/sid-3.jpg)
+
+![Speak&SID Mod 4](images/resistor-4.7k.jpg)
 
 
 ## Older News

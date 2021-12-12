@@ -16,6 +16,7 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 ## News
 
 - 12/12/2021 - New demo video with the [8580 R5 playing "Golden Axe" by Jeroen Tel - one of the greatest SID songs ever made.](https://youtu.be/M3e2Ts9LI8Q) 
+![Golden Axe YouTube Video](images/golden-video.jpg)
 
 ## Older News
 

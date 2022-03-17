@@ -15,6 +15,11 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## News
 
+- 12/12/2021 - New demo video with the [8580 R5 playing "Golden Axe" by Jeroen Tel - one of the greatest SID songs ever made.](https://youtu.be/M3e2Ts9LI8Q) 
+![Golden Axe YouTube Video](images/golden-axe-video.jpg)
+
+## Older News
+
 - 03/20/2021: Here is a [great demo video by Manfred Gross, showing
 LambdaSpeak 3 and Speak&SID in action!](https://youtu.be/c94lG-UYBnE)
 
@@ -49,8 +54,6 @@ Here are some annotated images that explain the mod:
 
 ![Speak&SID Mod 4](images/resistor-4.7k.jpg)
 
-
-## Older News
 
  - 10/18/2020: The last produced Speak&SID (together with a LambdaBoard 2 Port Expander)  goes to [Markus Hohmann aka "Devilmarkus"](https://www.cpcwiki.eu/index.php/User:Devilmarkus) as a Giveaway / Freebie to acknowledge and thank him for his never ending support and contributions to the [German CPC Scene](http://cpcwiki.de/forum/), including his great CPC tools such as the JavaCPC emulator, CDT2WAV, and DiskUtil, all of which I use on a daily basis. Thanks, Markus! Long live the CPC. Over a year, I have sold 30 Speak&SID, and I am out of PCBs by now. 
  - 7/15/2020:  Thanks to Microchip (makers of the ATmega) for tweeting about Speak&SID: 

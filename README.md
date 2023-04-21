@@ -275,7 +275,7 @@ It is possible to use USIfAC (I, not sure about II - I don't own one) in combina
 
 **Please note that this mod is different from the one described above for Manfred's setup: for Manfred, the CPC IOREQ trace was cut and a switch was put in, but here we are cutting the CPC IOREQ READ signal!**
 
-To disable IOREQ READs for Speak&SID you will need to cut a few traces on the PCB. These are marked in yellow in the pictures below. I recommend puttin in a 2-position switch, so Speak&SID can still work as originally designed. This switch allows to either route the IOREQ READ signal from the CPC into the Xilinx CPLD, or the disable this signal by pulling it HIGH over a 4.7k pullup resistor. That way the mod is entirely optional, and you do not loose the original functionality of Speak&SID. 
+To disable IOREQ READs for Speak&SID you will need to cut a few traces on the PCB. These are marked in yellow in the pictures below. I recommend mounting a 2-position switch as shown. This switch allows to either route the IOREQ READ signal from the CPC into the Xilinx CPLD for original operation, or to disable this signal by pulling it HIGH over a 4.7k pullup resistor to VCC (5V). That way the mod is entirely optional, and you do not loose the original functionality of Speak&SID. 
 
 ![Mod 1](images/usifac-mod/DSC02064.JPG)
 ![Mod 2](images/usifac-mod/DSC02061.JPG)

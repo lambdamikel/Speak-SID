@@ -282,7 +282,7 @@ To disable IOREQ READs for Speak&SID you will need to cut a few traces on the PC
 ![Mod 3](images/usifac-mod/DSC02063.JPG)
 ![Mod 4](images/usifac-mod/DSC02066.JPG)
 
-Here is a [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM), and [here are the USIfAC MIDI demo programs.](cpc/usifac/newusi.dsk). 
+Here is a [demo video showing USIfAC with Speak&SID](https://youtu.be/o3xvVwjMrPM), and [here are the USIfAC MIDI demo programs.](cpc/usifac/newusi.dsk). 
 
 ## Acknowledgements
 

@@ -15,10 +15,12 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## News
 
-- 12/12/2021 - New demo video with the [8580 R5 playing "Golden Axe" by Jeroen Tel - one of the greatest SID songs ever made.](https://youtu.be/M3e2Ts9LI8Q) 
-![Golden Axe YouTube Video](images/golden-axe-video.jpg)
+- 04/21/2023 - A new [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM). Using Speak&SID with USIfAC (I) requires a mod described below. 
 
 ## Older News
+
+- 12/12/2021 - New demo video with the [8580 R5 playing "Golden Axe" by Jeroen Tel - one of the greatest SID songs ever made.](https://youtu.be/M3e2Ts9LI8Q) 
+![Golden Axe YouTube Video](images/golden-axe-video.jpg)
 
 - 03/20/2021: Here is a [great demo video by Manfred Gross, showing
 LambdaSpeak 3 and Speak&SID in action!](https://youtu.be/c94lG-UYBnE)
@@ -238,7 +240,11 @@ control byte / command `41`, again from port `&FBEE`. So, first ask for the numb
 
 - **Echo Test Mode**: 9. For testing the communication between the CPC and Speak&SID. In this mode, each byte sent (IOREQ WRITE) to port `&FBEE` is immediately echoed back and output on port `&FBEE` such that the next IOREQ READ will read the same value as just sent. 
 
-- **MIDI SID Mode**: 11. Turn your CPC with Speak&SID into a powerful MIDI synthesizer! In this mode, the SID is being turned on, and the UART / Serial Interface is being configured for MIDI IN. Incoming MIDI messages are being buffered. The status of the buffer can be inquired by reading from port `&FBEE` - if a `0`  is read, no unread data is available. If a `1` is read, then the *next read from port `&FBEE` will retrieve the next available unread MIDI message byte from the buffer*. A CPC machine code program can just run a tight loop, constantly reading from port `&FBEE` to get a *stream of MIDI bytes* from Speak&SID.  The MIDI bytes can then be interpreted accordingly, e.g., MIDI NOTE ON/OFF messages can be turned into corresponding SID register writes for making a sound. The SID registers are available in the IO port range `&FAC0 - &FADC`. It is hence possible to control the SID chip via MIDI messages. In addition, the SpeakJet can also be controlled in a similar way, by writing the SpeakJet native phonemes to port `&FBEE`. And nothing prevents use from also playing the CPC's internal AY 3-8192 sound chip in parallel, resulting in a capable and unique CPC synthesizer with 3 sound generators (SpeakJet, SID, AY) and 10 channel polyphony (3 SID, 3 AY, 4 SpeakJet - the SpeakJet is actually a sound synthesizer as well!). Check out the demo program `SYNTH.BAS` on the `SPEAKJET.DSK`. 
+- **MIDI SID Mode**: 11. Turn your CPC with Speak&SID into a powerful MIDI synthesizer! In this mode, the SID is being turned on, and the UART / Serial Interface is being configured for MIDI IN. Incoming MIDI messages are being buffered. The status of the buffer can be inquired by reading from port `&FBEE` - if a `0`  is read, no unread data is available. If a `1` is read, then the *next read from port `&FBEE` will retrieve the next available unread MIDI message byte from the buffer*. A CPC machine code program can just run a tight loop, constantly reading from port `&FBEE` to get a *stream of MIDI bytes* from Speak&SID.  The MIDI bytes can then be interpreted accordingly, e.g., MIDI NOTE ON/OFF messages can be turned into corresponding SID register writes for making a sound. The SID registers are available in the IO port range `&FAC0 - &FADC`. It is hence possible to control the SID chip via MIDI messages. Check out the demo program `SYNTH.BAS` on the `SPEAKSID.DSK`.
+
+Unfortunately, it is **not possible to control the SpeakJet over MIDI using the on-board serial port / UART** - the ATmega microcontroller only has one UART, and the MIDI baud rate is incompatible with the baud rate required for the SpeakJet. Note that the SpeakJet is also controlled over this very same UART. **However, it is possible to use another serial interface card such as the USIfAC for MIDI input instead. See below for details.**
+
+![MIDI Breakout](images/usifac-mod/DSC02069.jpg) 
 
 The following commands / control bytes do not correspond to modes, i.e., the do not change the current mode, but are also prefixed with `255`: 
 
@@ -261,7 +267,20 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 ## CPC Disk - Software 
 
-Thre are two DSK images - [`SPEAKSID.DSK`](cpc/speakandsid/SPEAKSID.dsk), and [`SIDPLAY.DSK`](cpc/SIDPLAY.dsk). The latter one contains a SID tune player with LED Lightshow, and some SID tunes. The [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a SpeakJet demo program, a demo of the Serial Interface / UART (simple terminal program), a GPIO test program, and 2 BASIC SID test programs. The biggest program on this disk is the `SYNTH.BAS` MAXAM assembler program that implements the *MIDI IN realtime SID+AY CPC Synthesizer*. 
+Thre are two DSK images - [`SPEAKSID.DSK`](cpc/speakandsid/SPEAKSID.dsk), and [`SIDPLAY.DSK`](cpc/SIDPLAY.dsk). The latter one contains a SID tune player with LED Lightshow, and some SID tunes. The [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a SpeakJet demo program, a demo of the Serial Interface / UART (simple terminal program), a GPIO test program, and 2 BASIC SID test programs. The biggest program on this disk is the `SYNTH.BAS` MAXAM assembler program that implements the *MIDI IN realtime SID+AY CPC Synthesizer*.
+
+## Playing the SpeakJet Chip over MIDI with USIfAC
+
+It is possible to use USIfAC (I, not sure about II - I don't own one) in combination with Speak&SID. Unfortunately, Speak&SID has to be modded as the IO read request port ranges overlap by default (my bad - Speak&SID implements partial address decoding to reduce circuit complexity). However, with the following mod, you can make Speak&SID coexist with USIfAC on the CPC bus. The idea is to disable the port read requests for Speak&SID (i.e., make Speak&SID "deaf" to these), so that only USIfAC will respond to port requests. Speak&SID will still respond to its port write requests. 
+
+To disable IOREQ READs for Speak&SID you will need to cut a few traces on the PCB. These are marked in yellow in the pictures below. I recommend puttin in a 2-position switch, so Speak&SID can still work as originally designed. This switch allows to either route the IOREQ READ signal from the CPC into the Xilinx CPLD, or the disable this signal by pulling it HIGH over a 4.7k pullup resistor. That way the mod is entirely optional, and you do not loose the original functionality of Speak&SID. 
+
+![Mod 1](images/usifac-mod/DSC02064.jpg)
+![Mod 2](images/usifac-mod/DSC02061.jpg)
+![Mod 3](images/usifac-mod/DSC02063.jpg)
+![Mod 4](images/usifac-mod/DSC02066.jpg)
+
+Here is a [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM), and [here are the USIfAC MIDI demo programs.](cpc/usifac/newusi.dsk). 
 
 ## Acknowledgements
 

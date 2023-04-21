@@ -15,7 +15,7 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## News
 
-- 04/21/2023 - A new [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM). Using Speak&SID with USIfAC (I) requires a mod described below. 
+- 04/21/2023 - A new [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM) Using Speak&SID with USIfAC (I) requires a mod described below. 
 
 ## Older News
 
@@ -36,8 +36,8 @@ same port `&FBEE`. He was looking for a solution that would allow him
 to have all expansions connected to the CPC permanentely, without
 having to remove and add cards all the time. We tried various
 after-market "hacks" in order to support this and came up with a
-solution that requires cutting the CPC IOREQ trace on the LS3 and
-Speak&SID PCBs. This signal usually goes into the CPLD address
+solution that **requires cutting the CPC IOREQ trace on the LS3 and
+Speak&SID PCBs.** This signal usually goes into the CPLD address
 decoder. A 2-position switch is used that either enables the card by
 connecting the CPLD pin to the IOREQ signal from the CPC, or disables
 it by routing it to +5V / VCC via a 4.7 kOhm resistor (the signal is
@@ -244,7 +244,7 @@ control byte / command `41`, again from port `&FBEE`. So, first ask for the numb
 
 Unfortunately, it is **not possible to control the SpeakJet over MIDI using the on-board serial port / UART** - the ATmega microcontroller only has one UART, and the MIDI baud rate is incompatible with the baud rate required for the SpeakJet. Note that the SpeakJet is also controlled over this very same UART. **However, it is possible to use another serial interface card such as the USIfAC for MIDI input instead. See below for details.**
 
-![MIDI Breakout](images/usifac-mod/DSC02069.jpg) 
+![MIDI Breakout](images/usifac-mod/DSC02069.JPG) 
 
 The following commands / control bytes do not correspond to modes, i.e., the do not change the current mode, but are also prefixed with `255`: 
 
@@ -271,14 +271,16 @@ Thre are two DSK images - [`SPEAKSID.DSK`](cpc/speakandsid/SPEAKSID.dsk), and [`
 
 ## Playing the SpeakJet Chip over MIDI with USIfAC
 
-It is possible to use USIfAC (I, not sure about II - I don't own one) in combination with Speak&SID. Unfortunately, Speak&SID has to be modded as the IO read request port ranges overlap by default (my bad - Speak&SID implements partial address decoding to reduce circuit complexity). However, with the following mod, you can make Speak&SID coexist with USIfAC on the CPC bus. The idea is to disable the port read requests for Speak&SID (i.e., make Speak&SID "deaf" to these), so that only USIfAC will respond to port requests. Speak&SID will still respond to its port write requests. 
+It is possible to use USIfAC (I, not sure about II - I don't own one) in combination with Speak&SID. Unfortunately, Speak&SID has to be modded as the IO read request port ranges overlap by default (my bad - Speak&SID implements partial address decoding to reduce circuit complexity). However, with the following mod, you can make Speak&SID coexist with USIfAC on the CPC bus. The idea is to disable the port read requests for Speak&SID (i.e., make Speak&SID "deaf" to these), so that only USIfAC will respond to port requests. Speak&SID will still respond to its port write requests.
+
+**Please note that this mod is different from the one described above for Manfred's setup: for Manfred, the CPC IOREQ trace was cut and a switch was put in, but here we are cutting the CPC IOREQ READ signal!**
 
 To disable IOREQ READs for Speak&SID you will need to cut a few traces on the PCB. These are marked in yellow in the pictures below. I recommend puttin in a 2-position switch, so Speak&SID can still work as originally designed. This switch allows to either route the IOREQ READ signal from the CPC into the Xilinx CPLD, or the disable this signal by pulling it HIGH over a 4.7k pullup resistor. That way the mod is entirely optional, and you do not loose the original functionality of Speak&SID. 
 
-![Mod 1](images/usifac-mod/DSC02064.jpg)
-![Mod 2](images/usifac-mod/DSC02061.jpg)
-![Mod 3](images/usifac-mod/DSC02063.jpg)
-![Mod 4](images/usifac-mod/DSC02066.jpg)
+![Mod 1](images/usifac-mod/DSC02064.JPG)
+![Mod 2](images/usifac-mod/DSC02061.JPG)
+![Mod 3](images/usifac-mod/DSC02063.JPG)
+![Mod 4](images/usifac-mod/DSC02066.JPG)
 
 Here is a [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM), and [here are the USIfAC MIDI demo programs.](cpc/usifac/newusi.dsk). 
 

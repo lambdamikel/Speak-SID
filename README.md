@@ -271,7 +271,7 @@ Thre are two DSK images - [`SPEAKSID.DSK`](cpc/speakandsid/SPEAKSID.dsk), and [`
 
 ## Playing the SpeakJet Chip over MIDI with USIfAC
 
-It is possible to use USIfAC (I, not sure about II - I don't own one) in combination with Speak&SID. Unfortunately, Speak&SID has to be modded as the IO read request port ranges overlap by default (my bad - Speak&SID implements partial address decoding to reduce circuit complexity). However, with the following mod, you can make Speak&SID coexist with USIfAC on the CPC bus. The idea is to disable the port read requests for Speak&SID (i.e., make Speak&SID "deaf" to these), so that only USIfAC will respond to port requests. Speak&SID will still respond to its port write requests.
+It is possible to use USIfAC (I, not sure about II - I don't own one) in combination with Speak&SID. Unfortunately, Speak&SID has to be modded as the IO read request port ranges overlap by default (my bad - Speak&SID implements partial address decoding to reduce circuit complexity). However, with the following mod, you can make Speak&SID coexist with USIfAC on the CPC bus. The idea is to disable the port read requests for Speak&SID (i.e., make Speak&SID "deaf" to these), so that only USIfAC will respond to port read requests from that port range. Speak&SID will still respond to its port write requests (otherwise it would be of little use!)
 
 **Please note that this mod is different from the one described above for Manfred's setup: for Manfred, the CPC IOREQ trace was cut and a switch was put in, but here we are cutting the CPC IOREQ READ signal!**
 

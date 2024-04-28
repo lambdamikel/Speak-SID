@@ -15,6 +15,8 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 
 ## News
 
+- 04/28/2024 - [CPC 6128 Speak&SID demo video by Manfred Gross](https://youtu.be/EP58IdfODac).
+
 - 04/21/2023 - A new [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM) Using Speak&SID with USIfAC (I) requires a mod described below. 
 
 ## Older News

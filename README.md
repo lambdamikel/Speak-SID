@@ -13,8 +13,7 @@ This CPC expansion board offers:
 
 Firmware updates to the CPLD can be accomplished "in system" by using the JTAG header; the ATMega microcontroller can be updated with a ISP USB programmer such as USBtinyISP connecting to the SPI headers via Dupont cables.  
 
-## News
-
+## Latest News
 - 04/28/2024 - [CPC 6128 Speak&SID demo video by Manfred Gross](https://youtu.be/EP58IdfODac).
 
 - 04/21/2023 - A new [demo video showing USIfAC with Speak&SID.](https://youtu.be/o3xvVwjMrPM) Using Speak&SID with USIfAC (I) requires a mod described below. 

@@ -7,11 +7,11 @@ Speak&SID plugs into the expansion port of the CPC, and is a M4-compatible expan
 This CPC expansion board offers:
 
 1. A SpeakJet-based speech synthesizer, featuring a native SpeakJet-based mode as well as a SpeakJet-based emulation of the classic Amstrad SSA-1 speech synthesizer from 1985. 
-2. A sound synthesizer utilizing  the fabolous SID (Commodore 64) soundchip. Speak&SID CPC can use the original **6581**, the **8580**, as well as modern re-implementations of the SID chip such as **SwinSID** or **ARMSID**. To use the 6581, supply **12 V with positive center polarity** over the Speak&SID power barrel jack using a stabilized low noise (preferably linear) DC power supply; for the **8580**, **9 V** are required. **No extra PSU** is needed for **SwinSID** or **ARMSID**. 
-3. A general purpose multi-IO expansion, featuring a **Serial Interface (UART)**, a **SPI Interface**, an **I2C Interface**, as well as **4 digitial general purpose input/output ports (GPIOs)**. The 4 rightmost LEDs of the LED Segment Bar shows the status of the 4 GPIO outputs. Notice that Speak&SID supplies pin headers for GPIO, UART, SPI, and I2C. 
+2. A sound synthesizer utilizing  the fabulous SID (Commodore 64) soundchip. Speak&SID CPC can use the original **6581**, the **8580**, as well as modern re-implementations of the SID chip such as **SwinSID** or **ARMSID**. To use the 6581, supply **12 V with positive center polarity** over the Speak&SID power barrel jack using a stabilized low noise (preferably linear) DC power supply; for the **8580**, **9 V** are required. **No extra PSU** is needed for **SwinSID** or **ARMSID**. 
+3. A general purpose multi-IO expansion, featuring a **Serial Interface (UART)**, a **SPI Interface**, an **I2C Interface**, as well as **4 digital general purpose input/output ports (GPIOs)**. The 4 rightmost LEDs of the LED Segment Bar shows the status of the 4 GPIO outputs. Notice that Speak&SID supplies pin headers for GPIO, UART, SPI, and I2C. 
 4. A MIDI IN realtime SID+AY synthesizer. With a 10 $ MIDI breakout board connected to the UART pin headers, and the CPC running a "synthesizer" machine code program, Speak&SID turns the CPC into a powerful and versatile SID and AY MIDI IN synthesizer.  
 
-Firmware updates to the CPLD can be acomplished "in system" by using the JTAG header; the ATMega microcontroller can be updated with a ISP USB programmer such as USBtinyISP connecting to the SPI headers via Dupont cables.  
+Firmware updates to the CPLD can be accomplished "in system" by using the JTAG header; the ATMega microcontroller can be updated with a ISP USB programmer such as USBtinyISP connecting to the SPI headers via Dupont cables.  
 
 ## News
 
@@ -22,7 +22,7 @@ Firmware updates to the CPLD can be acomplished "in system" by using the JTAG he
 ## Older News
 
 - 12/12/2021 - New demo video with the [8580 R5 playing "Golden Axe" by Jeroen Tel - one of the greatest SID songs ever made.](https://youtu.be/M3e2Ts9LI8Q) 
-![Golden Axe YouTube Video](images/golden-axe-video.jpg)
+  ![Golden Axe YouTube Video](images/golden-axe-video.jpg)
 
 - 03/20/2021: Here is a [great demo video by Manfred Gross, showing
 LambdaSpeak 3 and Speak&SID in action!](https://youtu.be/c94lG-UYBnE)
@@ -35,7 +35,7 @@ extensions coexist on one Z80 databus!
 This was a bit challenging to achieve, because both Speak&SID and
 LambdaSpeak emulate the SSA-1 Speech Synthesizer, and hence occupy the
 same port `&FBEE`. He was looking for a solution that would allow him
-to have all expansions connected to the CPC permanentely, without
+to have all expansions connected to the CPC permanently, without
 having to remove and add cards all the time. We tried various
 after-market "hacks" in order to support this and came up with a
 solution that **requires cutting the CPC IOREQ trace on the LS3 and
@@ -62,7 +62,7 @@ Here are some annotated images that explain the mod:
  - 10/18/2020: The last produced Speak&SID (together with a LambdaBoard 2 Port Expander)  goes to [Markus Hohmann aka "Devilmarkus"](https://www.cpcwiki.eu/index.php/User:Devilmarkus) as a Giveaway / Freebie to acknowledge and thank him for his never ending support and contributions to the [German CPC Scene](http://cpcwiki.de/forum/), including his great CPC tools such as the JavaCPC emulator, CDT2WAV, and DiskUtil, all of which I use on a daily basis. Thanks, Markus! Long live the CPC. Over a year, I have sold 30 Speak&SID, and I am out of PCBs by now. 
  - 7/15/2020:  Thanks to Microchip (makers of the ATmega) for tweeting about Speak&SID: 
 
-![Microchip Makes](images/microchip-makes.jpg)
+  ![Microchip Makes](images/microchip-makes.jpg)
 
 
 ## Some Pictures 
@@ -129,8 +129,8 @@ project.](src/atmega8535/)
 
 ## Building and Maker Support 
 
-I am able to provide Speak&SID as a kit, or only pre-programmed components (CPLD, ATMega), or even a fully assembled version inlcuding
-a connection cable and/or LambdaBoard expansion board backplane. Send me a mail if you are interrested. Or, just download the sources and build it from the [provided Gerbers](gerbers/speak&sid.zip) and [BOM](schematics/bom.jpg). 
+I am able to provide Speak&SID as a kit, or only pre-programmed components (CPLD, ATMega), or even a fully assembled version including
+a connection cable and/or LambdaBoard expansion board backplane. Send me a mail if you are interested. Or, just download the sources and build it from the [provided Gerbers](gerbers/speak&sid.zip) and [BOM](schematics/bom.jpg). 
 
 To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `make` and the [provided `Makefile`.](src/atmega8535/speaksid/Makefile) The makefile template is again from Elliot Williams' "AVR Programming" book. See below (Acknowledgements). 
 
@@ -165,7 +165,7 @@ To build the [firmware from source,](src/atmega8535/speaksid/speaksid.c) use `ma
 
 The firmware can be updated without having to remove the ATMega uC from the socket. The SPI header pins of Speak&SID can be used for updating the firmware. 
 
-I am using the USBtinyISP programmer. Just connect the progammer's SPI pins with the corresponding Speak&SID SPI pins, using DuPont cables: MOSI <-> MOSI, MISO <-> MISO, SCK <-> SCK, and GND <-> GND. Note that VCC might not be required. If your connecting to VCC, make sure to FIRST power on the CPC and Speak&SID BEFORE plugging in the USB cable into your computer, otherwise the USB port is powering the CPC. VCC should not be required for programming. With the proper connections in place and the CPC and Speak&SID up and running, use the provided `make flash` (entered into a `command.com` shell) from the `Makefile` **whilst holding the Speak&SID Reset button pushed down until the programming process has finished.** The firmware HEX file is small, so it only takes about 20 seconds to programm the firmware. 
+I am using the USBtinyISP programmer. Just connect the programmer's SPI pins with the corresponding Speak&SID SPI pins, using DuPont cables: MOSI <-> MOSI, MISO <-> MISO, SCK <-> SCK, and GND <-> GND. Note that VCC might not be required. If your connecting to VCC, make sure to FIRST power on the CPC and Speak&SID BEFORE plugging in the USB cable into your computer, otherwise the USB port is powering the CPC. VCC should not be required for programming. With the proper connections in place and the CPC and Speak&SID up and running, use the provided `make flash` (entered into a `command.com` shell) from the `Makefile` **whilst holding the Speak&SID Reset button pushed down until the programming process has finished.** The firmware HEX file is small, so it only takes about 20 seconds to program the firmware. 
 
 In case you encounter problems, it might be the reset button bouncing... in that case, try a couple of times, and if that fails there is still the option to simply bridge the reset button with a cable (would require some temporary soldering or similar). Flash programming only works when the ATmega is constantly held in reset state. 
 
@@ -188,7 +188,7 @@ Please note that you cannot simply send ASCII codes to the SpeakJet - you need t
 
 - **Amstrad SSA-1 Emulation Mode**: 3. In this mode the Amstrad SSA-1 speech synthesizer is emulated. On port `&FBEE`, emulated SBY and LRQ SP0256-AL2 signals are visible, such that existing CPC software will think that an Amstrad SSA-1 is present. The emulation has been tested with SSA-1 supporting speech games such as "Roland in Space", the SSA-1 driver software, "Tubaruba", and others. 
 
-- **SID Mode**: 4. In this mode, the SID soundchip is turned on. The 28 SID registers of the SID soundchip are mapped to the CPC's IO range `&FAC0 - &FADC`. In addition, in this mode, Speak&SID is listening to `&FBEE` - any output to `&FBEE` will be output to the GPIO ports, hence setting the coresponding LED pattern on the LED Segment Bar. This can be used for programming lightshows, or volume level meters, etc. In order to **quit the SID mode**, send 255 to `&FBEE`. Notice that the GPIO is 4bit only, so only values 0-15 make a difference wrt. LED patterns (only the lower nibble of the byte). Notice that all IO requests in the `&FAC0 - &FADC` range directly go to the SID chip as long as the SID mode is enabled, hence resulting in maximal SID access speed (no ATMega involvement for SID access). 
+- **SID Mode**: 4. In this mode, the SID soundchip is turned on. The 28 SID registers of the SID soundchip are mapped to the CPC's IO range `&FAC0 - &FADC`. In addition, in this mode, Speak&SID is listening to `&FBEE` - any output to `&FBEE` will be output to the GPIO ports, hence setting the corresponding LED pattern on the LED Segment Bar. This can be used for programming lightshows, or volume level meters, etc. In order to **quit the SID mode**, send 255 to `&FBEE`. Notice that the GPIO is 4bit only, so only values 0-15 make a difference wrt. LED patterns (only the lower nibble of the byte). Notice that all IO requests in the `&FAC0 - &FADC` range directly go to the SID chip as long as the SID mode is enabled, hence resulting in maximal SID access speed (no ATMega involvement for SID access). 
 
 - **UART / Serial Mode**: 5. Enables the UART. Once the UART mode is enabled, every byte received on port `&FBEE` will directly be transmitted over TX, using the current UART settings for baud rate, parity, number of stop bits, and word width. See table below. BAUD rates above MIDI (312500) have not been tested. 
 
@@ -238,7 +238,7 @@ control byte / command `41`, again from port `&FBEE`. So, first ask for the numb
 
 - **I2C Mode**: 7. Not implemented yet. In the meantime, patch / extend the firmware for your own I2C device yourself! 
 
-- **GPIO Mode**: 8. Simple. The lower nibble of each byte sent to `&FBEE` (IOREQ WRITE) will be output to the 4 GPOs 1 to 4, and visalized on the LED Segment Bar. The current status of the 4 GPIs 1 to 4 can be read from `&FBEE` (IOREQ READ) at any time in that mode. 
+- **GPIO Mode**: 8. Simple. The lower nibble of each byte sent to `&FBEE` (IOREQ WRITE) will be output to the 4 GPOs 1 to 4, and visualized on the LED Segment Bar. The current status of the 4 GPIs 1 to 4 can be read from `&FBEE` (IOREQ READ) at any time in that mode. 
 
 - **Echo Test Mode**: 9. For testing the communication between the CPC and Speak&SID. In this mode, each byte sent (IOREQ WRITE) to port `&FBEE` is immediately echoed back and output on port `&FBEE` such that the next IOREQ READ will read the same value as just sent. 
 
@@ -269,7 +269,7 @@ The following commands / control bytes do not correspond to modes, i.e., the do 
 
 ## CPC Disk - Software 
 
-Thre are two DSK images - [`SPEAKSID.DSK`](cpc/speakandsid/SPEAKSID.dsk), and [`SIDPLAY.DSK`](cpc/SIDPLAY.dsk). The latter one contains a SID tune player with LED Lightshow, and some SID tunes. The [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a SpeakJet demo program, a demo of the Serial Interface / UART (simple terminal program), a GPIO test program, and 2 BASIC SID test programs. The biggest program on this disk is the `SYNTH.BAS` MAXAM assembler program that implements the *MIDI IN realtime SID+AY CPC Synthesizer*.
+There are two DSK images - [`SPEAKSID.DSK`](cpc/speakandsid/SPEAKSID.dsk), and [`SIDPLAY.DSK`](cpc/SIDPLAY.dsk). The latter one contains a SID tune player with LED Lightshow, and some SID tunes. The [Speak&SID CPC DSK](cpc/speakandsid/SPEAKSID.dsk) contains a SpeakJet demo program, a demo of the Serial Interface / UART (simple terminal program), a GPIO test program, and 2 BASIC SID test programs. The biggest program on this disk is the `SYNTH.BAS` MAXAM assembler program that implements the *MIDI IN realtime SID+AY CPC Synthesizer*.
 
 ## Playing the SpeakJet Chip over MIDI with USIfAC
 
@@ -288,11 +288,11 @@ Here is a [demo video showing USIfAC with Speak&SID](https://youtu.be/o3xvVwjMrP
 
 ## Acknowledgements
 
-- Elliot Wiliams for his book "Make: AVR Programming" and [corresponding sources /AVR Programming Libraries.](https://github.com/hexagon5un/AVR-Programming) 
+- Elliot Williams for his book "Make: AVR Programming" and [corresponding sources /AVR Programming Libraries.](https://github.com/hexagon5un/AVR-Programming) 
 
 - [DaDMaN from the CPC Wiki Forum](http://www.cpcwiki.eu/forum/amstrad-cpc-hardware/new-amstrad-cpc-sound-board-(aka-sonique-sound-board)-sid-part-(wip)/) for providing the Z80 source code of his branch of Simon Owen's Z80 SID Player.
 
 - [Simon Owen](https://simonowen.com/sam/sidplay/) for the [Z80 SID Player.](https://github.com/simonowen/sidplay)
 
 Previous SID hardware soundcards for the CPC exist. The earliest one was featured in the [CPC International 08/1989 Issue.](https://archive.org/details/54_Amstrad_PC_International_1989-08) 
-Other attemps of connecting a SID to the CPC are documented on the CPC Wiki Forum. The hardware design of Speak&SID differs in major aspects from all of these, and is not related to any previous designs in any way. 
+Other attempts of connecting a SID to the CPC are documented on the CPC Wiki Forum. The hardware design of Speak&SID differs in major aspects from all of these, and is not related to any previous designs in any way. 
